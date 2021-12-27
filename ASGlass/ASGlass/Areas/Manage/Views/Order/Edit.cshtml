@@ -1,0 +1,34 @@
+﻿@model Order
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<div class="container-fluid">
+    <h1>Edit</h1>
+    <div class="card" style="width: 40%; margin:0 auto;">
+        <div class="card-body">
+            <p class="card-text">
+                Full Name - @Model.FullName
+            </p>
+            <p class="card-text">
+                Email - @Model.Email
+            </p>
+            <p class="card-text">
+                Date - @Model.CreatedAt.AddHours(4).ToString("HH:mm dd MMM yyyy")
+            </p>
+            <p class="card-text">
+                Status - @Model.Status
+            </p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"> <b>Mehsulun adi: </b> @Model.ProductName</li>
+            <li class="list-group-item"> <b>Şəkil: </b> <img src="~/uploads/products/@Model.ProductImage" style="width:200px;"/> </li>
+
+        </ul>
+        <div class="card-body">
+            <a asp-action="accept" asp-route-id="@Model.Id" class="btn btn-success">Qəbul Et</a>
+            <a asp-action="reject" asp-route-id="@Model.Id" class="btn btn-danger">Rədd Et</a>
+        </div>
+    </div>
+</div>

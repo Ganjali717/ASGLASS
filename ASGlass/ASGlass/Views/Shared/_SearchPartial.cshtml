@@ -1,0 +1,11 @@
+﻿@model ProductViewModel
+
+<ul class="header-search-list" style="list-style:none; padding:0; margin:0;">
+    @foreach (var item in Model.Products)
+    {
+        <li style="padding:35px; border-bottom:1px solid black;">
+            <a>@item.Name</a>
+            <img src="~/uploads/products/@item.ProductImages.FirstOrDefault(x => x.PosterStatus == true)?.Image" style="width:70px; height:50px; margin-left:15px;" />
+        </li>
+    }
+</ul>

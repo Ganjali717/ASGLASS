@@ -1,0 +1,570 @@
+﻿@inject LayoutService service
+@inject UserManager<AppUser> userManager
+
+@{
+    Setting setting = service.GetSetting();
+    List<CartViewModel> cartVM = service.GetCartItems();
+    List<Category> categories = service.GetCategories();
+
+    AppUser member = User.Identity.IsAuthenticated ? userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin) : null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AS Glass Azerbaijan</title>
+    <link href="~/assets/images/logo/headlogo.png" rel="shortcut icon" type="image/x-icon">
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=Work+Sans:wght@350&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=M+PLUS+1:wght@450;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+</head>
+
+<body>
+    @if (TempData["Success"] != null)
+    {
+        if ((bool)TempData["Success"] == true)
+        {
+            <input type="hidden" id="success" />
+        }
+        else
+        {
+            <input type="hidden" id="error" />
+        }
+    }
+    <a id="backtop" onclick="topFunction()"><i class="bi bi-arrow-up-circle-fill"></i></a>
+    <a id="livechat-btn"><i class="bi bi-chat-text"></i></a>
+
+    <div id="livechat" class="d-none">
+
+        <div class="chat-head d-flex row">
+            <p class="col-4">AS Glass</p>
+            <a class="col-3 " id="exitchat">
+                <i class="bi bi-x-diamond-fill"></i>
+            </a>
+        </div>
+        <div class="chat-body">
+
+        </div>
+        <hr />
+        <form name="message" action="">
+            <input name="usermsg" type="text" id="usermsg" />
+            <br /><br />
+            <input name="submitmsg" type="submit" id="submitmsg" value="Send" />
+        </form>
+        <br /><br />
+    </div>
+    <header>
+        <div id="header-page">
+            <div class="container">
+                <div class="row">
+                    <div class="header-deals col-5">
+                        Tel: 050 593 40 40 | Email: <a>ganjali.imanov@gmail.com</a>
+                    </div>
+                    <div class="header-top-help col-5">
+                        <a asp-action="index" asp-controller="service">Kömək & Servislər</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="navbar">
+            <div class="container">
+                <div class="row">
+                    <div class="hamburger-menu col-1">
+                        <i class="bi bi-list" id="hamburger"></i>
+                    </div>
+                    <div class="logo col-4">
+                        <a asp-action="index" asp-controller="home">
+                            <img src="~/assets/images/logo/tamlogo2.png" alt="">
+
+                        </a>
+                    </div>
+                    <div class="input-group mb-3 col-5">
+                        <input type="text" class="form-control product-search" placeholder="Axtar" aria-label="Recipient's username"
+                               aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" type="button">
+                                <i class="bi bi-search text-white"></i>
+                            </button>
+                        </div>
+                    </div>
+
+
+
+                    <div class="header-shop-cart col-4">
+                        <div class="responsive-search col-2">
+                            <i class="bi bi-search"></i>
+                        </div>
+                        <div class="shop-cart-container col-2">
+                            <a asp-action="index" asp-controller="card">
+                                <i class="bi bi-cart3"></i>
+                                <span class="cart-count">@cartVM.Count</span>
+                            </a>
+                        </div>
+                        <div class="login-icon col-2">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        <div class="login-container">
+                            <ul>
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li>  <a asp-action="showaccount" asp-controller="account" asp-route-id="@member.Id" id="circle">@User.Identity.Name</a></li>
+                                    <li>  <a class="font-weight-bold" asp-action="logout" asp-controller="account">Çıxış</a></li>
+                                }
+                                else
+                                {
+                                    <li><a asp-action="login" asp-controller="account">Daxil ol<i class="bi bi-box-arrow-in-right"></i></a></li>
+                                    <li><a asp-action="register" asp-controller="account">Qeydiyyatdan kec</a></li>
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="overlay" id="overlay-menu">
+                <div class="column">
+                    <ul>
+                        <li><a asp-action="index" asp-controller="home">Ana Səhifə</a></li>
+                        <li><a asp-action="index" asp-controller="about">Haqqımızda</a></li>
+                        <li>
+                            <a asp-action="index" asp-controller="glass" id="respons-first-list">Şüşə</a>
+
+                            <div class="responsive-dropdown-first">
+                                <ul>
+                                    <li><a href="">Ağ Şüşə</a></li>
+                                    <li><a href="">Qəhvəyi Şüşə</a></li>
+                                    <li><a href="">Qara Şüşə</a></li>
+                                    <li><a href="">Şüşə Rəflər</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a asp-action="index" asp-controller="mirror" id="respons-second-list">Güzgü</a>
+
+                            <div class="responsive-dropdown-second">
+                                <ul>
+                                    <li><a href="">Ağ Güzgü</a></li>
+                                    <li><a href="">Qəhvəyi Güzgü</a></li>
+                                    <li><a href="">Qara Güzgü</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a asp-action="index" asp-controller="shop">Ümumi Məhsullar</a></li>
+                        <li><a asp-action="index" asp-controller="contact">Əlaqə</a></li>
+                    </ul>
+                    <br>
+                    <div class="overlay-book">
+                        <a asp-action="login" asp-controller="account">Log in</a>
+                        <a href="" id="overlay-book-btn">Book a demo</a>
+                    </div>
+                </div>
+            </div>
+            <div id="search-list-box">
+
+            </div>
+
+        </div>
+        <nav class="col-12" id="menu">
+            <ul>
+                <li><a asp-action="index" asp-controller="home">ANA SƏHİFƏ</a></li>
+                <li><a asp-action="index" asp-controller="about">HAQQIMIZDA</a></li>
+                @foreach (var item in categories)
+                {
+                    <li>
+                        <a asp-action="index" asp-controller="@(item.Id == 1 ? "glass":(item.Id == 2?"glassshelve":"mirror"))">@item.Name</a>
+                        @if (item.Id == 1)
+                        {
+                            <div class="menu-detail">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="menu-first-column col-3">
+                                            <p>ŞÜŞƏ NÖVLƏRİ</p>
+                                            <ul class="first-list">
+                                                <li>
+                                                    <img src="~/assets/images/icons/glass.png" alt=""><a asp-action="index" asp-controller="glass">SADƏ ŞÜŞƏ</a>
+                                                </li>
+                                                <li>
+                                                    <img src="~/assets/images/icons/combo-mirror-2.png" alt=""><a asp-action="index" asp-controller="glass">
+                                                        FƏRQLİ
+                                                        KƏSİM
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <img src="~/assets/images/icons/glass.png" alt=""><a asp-action="index" asp-controller="glass">BİŞMİŞ ŞÜŞƏ</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="menu-second-column col-3">
+                                            <p>XÜSUSİ ŞÜŞƏLƏR</p>
+                                            <ul class="second-list">
+                                                <li><img src="~/assets/images/icons/glass.png" alt=""><a asp-action="index" asp-controller="glass">AĞ ŞÜŞƏ</a></li>
+                                                <li>
+                                                    <img src="~/assets/images/icons/grey-glass.png" alt=""><a asp-action="index">QARA ŞÜŞƏ</a>
+                                                </li>
+                                                <li>
+                                                    <img src="~/assets/images/icons/brown-glass.png" alt=""><a asp-action="index">
+                                                        QƏHVƏYİ
+                                                        ŞÜŞƏ
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <img src="~/assets/images/icons/glass.png" alt=""><a asp-action="index">
+                                                        SƏTİN
+                                                        ŞÜŞƏ
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="third-menu-column col-3">
+                                            <p>ŞÜŞƏ TƏMİZLƏYİCİLƏR</p>
+                                            <ul class="third-list">
+                                                <li>
+                                                    <img src="~/assets/images/icons/glass-cleaner.png" alt=""><a href="">
+                                                        ŞÜŞƏ
+                                                        TƏMİZLƏYİCİ VASİTƏLƏR
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <img src="~/assets/images/icons/nano-cleaner.png" alt=""><a href="">
+                                                        NANO
+                                                        TƏMİZLƏYİCİ VASİTƏ
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="list-image col-3">
+                                            <img src="~/assets/images/technica/faska.jpg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                        else if (item.Id == 2)
+                        {
+                            <div class="menu-detail">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="menu-first-column col-3">
+                                            <p>ŞÜŞƏ RƏFLƏR</p>
+                                            <ul class="first-list">
+                                                <li>
+                                                    <img src="~/assets/images/icons/mirror-shelves.png" alt=""><a href="">
+                                                        ŞÜŞƏ
+                                                        RƏFİ
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <img src="~/assets/images/icons/quarter-glass.png" alt=""><a href="">
+                                                        KÜNC
+                                                        ŞÜŞƏ RƏFLƏR
+                                                    </a>
+                                                </li>
+                                                <br>
+                                                <p>DƏMİR MƏMULATI</p>
+                                                <li>
+                                                    <img src="~/assets/images/icons/shelf-brackets.png" alt=""><a href="">TUTACAQ</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="menu-second-column col-3">
+                                            <p>HAZIRDA OLAN RƏFLƏR</p>
+                                            <ul class="second-list">
+                                                <li>
+                                                    <img src="~/assets/images/icons/triangle-glass.png" alt=""><a href="">
+                                                        ÜÇ-KÜNC
+                                                        ŞÜŞƏ RƏFİ
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <img src="~/assets/images/icons/mirror-shelves.png" alt=""><a href="">DÖRDBUCAQLI ŞÜŞƏ RƏFİ</a>
+                                                </li>
+                                                <li>
+                                                    <img src="~/assets/images/icons/pentagon-glass.png" alt=""><a href="">BEŞBUCAQLI ŞÜŞƏ RƏFİ</a>
+                                                </li>
+                                                <li>
+                                                    <img src="~/assets/images/icons/quarter-glass.png" alt=""><a href="">
+                                                        DÖRBƏK
+                                                        DİRƏKLİ ŞÜŞƏ RƏFLƏR
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="list-image col-3">
+                                            <img src="~/assets/images/technica/dewme.jpg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div class="menu-detail">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="menu-first-column col-3">
+                                            <p>XÜSUSİ GÜZGÜLƏR</p>
+                                            <ul class="first-list">
+                                                <li>
+                                                    <img src="~/assets/images/icons/combo-mirror-2.png" alt=""><a href="">
+                                                        XÜSUSİ
+                                                        GÜZGÜLƏR
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <img src="~/assets/images/icons/faska-mirror.png" alt=""><a href="">
+                                                        FASETLİ
+                                                        GÜZGÜ
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <img src="~/assets/images/icons/glass.png" alt=""><a href="">
+                                                        SADƏ KƏSİM
+                                                        GÜZGÜ
+                                                    </a>
+                                                </li>
+                                                <br>
+                                                <p>RƏNGLİ GÜZGÜLƏR</p>
+                                                <li>
+                                                    <img src="~/assets/images/icons/grey-glass.png" alt=""><a href="">
+                                                        BOZ
+                                                        GÜZGÜ
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <img src="~/assets/images/icons/brown-glass.png" alt=""><a href="">
+                                                        QƏHVƏYİ
+                                                        GÜZGÜ
+                                                    </a>
+                                                </li>
+                                            </ul>
+
+
+                                        </div>
+                                        <div class="menu-second-column col-3">
+                                            <p>HAZIR OLAN GÜZGÜLƏR</p>
+                                            <ul class="second-list">
+                                                <li>
+                                                    <img src="~/assets/images/icons/circle-mirror.png" alt=""><a href="">
+                                                        YUMRU
+                                                        GÜZGÜ
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <img src="~/assets/images/icons/oval-mirror.png" alt=""><a href="">
+                                                        OVAL
+                                                        GÜZGÜ
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <img src="~/assets/images/icons/glass.png" alt=""><a href="">
+                                                        DÜZBUCAQ
+                                                        GÜZGÜ
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <img src="~/assets/images/icons/gym-mirror.png" alt=""><a href="">
+                                                        İDMAN ZALI
+                                                        GÜZGÜLƏRİ
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="third-menu-column col-3">
+                                            <p>GÜZGÜ AKSESUARLARI</p>
+                                            <ul class="third-list">
+                                                <li>
+                                                    <img src="~/assets/images/icons/mirror-clips.png" alt=""><a href="">
+                                                        GÜZGÜ
+                                                        KLİPLƏRİ
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <img src="~/assets/images/icons/mirror-adhesives.png" alt=""><a href="">
+                                                        GÜZGÜ
+                                                        YAPIŞTIRICILARI
+                                                    </a>
+                                                </li>
+                                                <li><img src="~/assets/images/icons/j-bars.png" alt=""><a href="">NİKEL-J</a></li>
+                                                <li><img src="~/assets/images/icons/l-bars.png" alt=""><a href="">NİKEL-L</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="list-image col-3">
+                                            <img src="~/assets/images/technica/faska.jpg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    </li>
+
+                }
+                <li><a asp-action="index" asp-controller="shop">ÜMUMİ MƏHSULLAR</a></li>
+                <li><a asp-action="index" asp-controller="contact">ƏLAQƏ</a></li>
+                <li class="pro"><a href="">PRO ÜÇÜN</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+
+
+    @RenderBody()
+
+    <footer>
+        <div class="container">
+            <div class="column">
+                <div class="foot-head col-12">
+                    <div class="foot-head-left col-5">
+                        <h4>Canlı mesaj at və ya zəng et</h4>
+                        <br>
+                        <h3>@service.GetSetting().SupportPhone</h3>
+                    </div>
+                    <div class="foot-head-right col-6">
+                        <p>Endirimlər haqqında birinci məlumat alan ol!</p>
+                        <br>
+                        <div class="input-group mb-3 col-5">
+                            <input type="text" class="form-control" placeholder="Email Adresiniz*"
+                                   aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-primary" type="button">Daxil ol</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="foot-body col-12">
+                    <div class="foot-asglass col-5">
+                        <h5>AS Glass</h5>
+
+                        <br><br>
+                        <p>
+                            AS Glass, xüsusi kəsilmiş şüşələr, güzgülər üçün onlayn pərakəndə satıcınızdır. <br />Şüşənizi və güzgünüzü düzəldirik və paytaxt daxilində sizə pulsuz göndəririk.
+                        </p>
+                        <br>
+                        <ul>
+                            <li><a asp-action="index" asp-controller="about">Haqqımızda</a></li>
+                            <li><a href="">Pro üçün</a></li>
+                        </ul>
+                    </div>
+                    <div class="foot-resorces col-2">
+                        <h5>Resurslar</h5>
+                        <ul>
+                            <li><a href="">Video görüntülər</a></li>
+                            <li><a href="">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="foot-products col-2">
+                        <h5>Məhsullar</h5>
+                        <ul>
+                            <li><a asp-action="index" asp-controller="glass">Şüşə</a></li>
+                            <li><a asp-action="index" asp-controller="glass">İdman zalı Güzgüləri</a></li>
+                            <li><a asp-action="index" asp-controller="mirror">Sadə Güzgü</a></li>
+                            <li><a asp-action="index" asp-controller="glassshelve">Şüşə Rəflər</a></li>
+                            <li><a asp-action="index" asp-controller="shop">Bütün məhsullar</a></li>
+                        </ul>
+                    </div>
+                    <div class="foot-support col-2">
+                        <h5>Dəstək</h5>
+                        <ul>
+                            <li><a asp-action="index" asp-controller="service">Müştəri Servisləri</a></li>
+                            <li><a asp-action="index" asp-controller="contact">Bizlə əlaqə saxlayın</a></li>
+                            <li><a asp-action="orderstatus" asp-controller="service">Sifariş statusu</a></li>
+                            <li><a asp-action="ordercancel" asp-controller="service">Sifarişi ləğv et</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="foot-foot col-12">
+                    <div class="foot-ft-left">
+                        <p>
+                            <i class="bi bi-geo-alt"></i> @service.GetSetting().Address © 2021 AS Glass. Bütün hüquqlar qorunur.
+                        </p>
+                    </div>
+                    <div class="foot-ft-right">
+                        <a href="">Qanun və qaydalar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/main.js"></script>
+    <script src="~/assets/js/accordion.js"></script>
+    <script src="~/assets/js/backtop.js"></script>
+    <script src="~/assets/js/livechat.js"></script>
+    <script src="~/assets/js/fetch.js"></script>
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+
+
+    @RenderSection("overlay", required: false)
+    @RenderSection("slider", required: false)
+    @RenderSection("measurement", required: false)
+    @RenderSection("customize", required: false)
+    @RenderSection("account", required: false)
+    @RenderSection("toastr", required: false)
+    <script>
+        var connection = new signalR.HubConnectionBuilder().withUrl("/asglasshub").build();
+
+        connection.start().then(function () {
+
+
+            console.log(connection.connectionId)
+        });
+
+        connection.on("OrderAccepted", function () {
+
+            console.log("accepted")
+
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "1000",
+                "hideDuration": "1000",
+                "timeOut": "1000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+
+            toastr["success"]("Sizin mehsul qebul olunmuwdur")
+
+        });
+
+        connection.on("ChangeOnlineStatus", function (id, status) {
+            var statusStr = status == true ? "online" : "offline";
+            $("#" + id).text("test")
+
+        })
+    </script>
+
+
+</body>
+
+</html>

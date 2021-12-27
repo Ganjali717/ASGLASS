@@ -1,0 +1,89 @@
+﻿@section Overlay{
+    <script src="~/assets/js/overlay.js"></script>
+
+}
+
+<main id="orderstatus">
+    <div id="cancelover">
+        <div class="cancel-overlay">
+            <div class="cancel-overlay-head">
+                <a href="" class="">CUSTOMER CARE</a>
+            </div>
+            <div class="cancel-overlay-body">
+                <div class="container">
+                    <h3>MÜŞTƏRİ SERVİSİ</h3>
+                    <ul>
+                        <li><a asp-action="index" asp-controller="contact">Əlaqə saxlıyın</a></li>
+                        <li><a asp-action="index" asp-controller="service">Tez-tez verilən suallar</a></li>
+                    </ul>
+                    <br>
+                    <h3>ALIŞ-VERİŞ VƏ GERİ QAYTARMA</h3>
+                    <ul>
+                        <li><a asp-action="returnpolicy" asp-controller="service">Qaytarma Siyasəti</a></li>
+                    </ul>
+                    <br>
+                    <h3>SİZİN SİFARİŞİNİZ</h3>
+                    <ul>
+                        <li><a asp-action="orderstatus" asp-controller="service">Sifarişin Statusu</a></li>
+                        <li><a asp-action="ordercancel" asp-controller="service">Sifarişi Rədd Etmək</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="statusinput">
+        <div class="container">
+            <div class="row">
+                <div class="order-status-left col-3">
+                    <h3>MÜŞTƏRİ SERVİSİ</h3>
+                    <ul>
+                        <li><a asp-action="index" asp-controller="contact">Əlaqə saxlıyın</a></li>
+                        <li><a asp-action="index" asp-controller="service">Tez-tez verilən suallar</a></li>
+                    </ul>
+                    <br>
+                    <h3>ALIŞ-VERİŞ VƏ GERİ QAYTARMA</h3>
+                    <ul>
+                        <li><a asp-action="returnpolicy" asp-controller="service">Qaytarma Siyasəti</a></li>
+                    </ul>
+                    <br>
+                    <h3>SİZİN SİFARİŞİNİZ</h3>
+                    <ul>
+                        <li><a asp-action="orderstatus" asp-controller="service">Sifarişin Statusu</a></li>
+                        <li><a asp-action="ordercancel" asp-controller="service">Sifarişi Rədd Etmək</a></li>
+                    </ul>
+                </div>
+                <div class="order-status-right col-8">
+                    <h2>
+                        Sifarişin Statusu
+                    </h2>
+                    <br>
+                    <p>Sifarişinizi asglass.com saytında yerləşdirmisinizsə, aşağıdakı sahələrə sifariş nömrənizi daxil etməklə sifariş statusunu yoxlaya bilərsiniz.</p>
+                    <br>
+                    <form method="post" asp-action="index" asp-controller="order">
+                        <label for="">Sifarişin Kodu:</label>
+                        <br>
+                        <input type="text" placeholder="Sifariş nömrəsini daxil edin" name="orderstatus" >
+                        <br><br>
+                        <input type="submit" value="Axtar">
+                    </form>
+                    <br>
+                    <p>Sifariş və Çatdırılma Sualları</p>
+                    <br>
+                    <b>Sifarişimi nə vaxt alacam?</b>
+                    <br>
+                    <p>Xüsusi məhsulların hazırlanması 5 ilə 7 iş günü çəkə bilər və bundan sonra göndəriləcək. Stokda olan məhsullar adətən 1-2 iş günü ərzində göndərilir.</p>
+                    <br>
+                    <b>Paketim vaxtında çatmasa nə etməliyəm?</b>
+                    <br>
+                    <p>Əgər paketiniz tələb etdiyiniz çatdırılma müddətində çatmazsa, lütfən, 1 (800) 463-3339 nömrəsinə zəng edərək birbaşa FedEx ilə əlaqə saxlayın və problem barədə bizə məlumat vermək üçün ofisimizlə əlaqə saxlayın.</p>
+                    <br>
+                    <b>Sifarişimi dəyişdirə və ya ləğv edə bilərəmmi?</b>
+                    <br>
+                    <p>Biznesimizin xüsusi xarakterinə görə və sifarişlərin vaxtında göndərilməsini təmin etmək üçün, sifarişiniz təqdim edildikdən və təsdiq edildikdən sonra dərhal onun üzərində işləməyə başlayırıq. Bu səbəbdən, əksər sifarişlər təqdim edildikdən sonra ləğv edilə bilməz. Hər hansı bir dəyişiklik lazımdırsa, lütfən, 1-866-GLASS-07 (1-866-452-7707) nömrəsi ilə dərhal ofisimizlə əlaqə saxlayın. Əksər hallarda, sifariş təqdim edildikdən sonra dəyişikliklər edilə bilməz, lakin biz sizin ehtiyaclarınızı ödəmək üçün əlimizdən gələni edəcəyik.</p>
+                    <br>
+                    <p>Göndərmə və sifariş siyasətlərimiz haqqında ətraflı məlumat üçün  <a href="">müştəri xidməti</a>  səhifəmizə baxın.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

@@ -1,0 +1,122 @@
+﻿@model List<CartViewModel>
+
+@{ 
+    double? totalProductPrice = 0;
+    double? totalPrice = 0;
+
+    
+    
+
+    @foreach (var item in Model)
+    {
+        if (item.DiscountPrice > 0)
+        {
+            totalProductPrice = item.DiscountPrice;
+
+        }
+        else
+        {
+            totalProductPrice = item.Price;
+
+        }
+
+        totalPrice += totalProductPrice;
+    }
+
+    
+}
+
+
+<main id="cart">
+    <section id="cart-body">
+
+        <div class="container">
+            <a asp-action="index" asp-controller="shop" class="shop-cont"><i class="bi bi-cart4"></i> Alış-Verişə Davam Et</a>
+            <br><br>
+            <div class="row">
+                <div class="cart-left col-8">
+                    <h4>SƏBƏTDƏKİ MƏHSULLAR</h4>
+                    <div class="cart-left-body">
+                        @foreach (var item in Model)
+                        {
+                            <div class="cart-item col-12">
+                                <div class="cart-item-img col-3">
+                                    @if (item.IsAccessory == true)
+                                    {
+                                        <img src="~/uploads/products/@item.Image" alt="">
+                                    }
+                                    else if (item.ProductId == null)
+                                    {
+                                        <img src="~/assets/images/mirror/@item.Image" alt="">
+
+                                    }
+                                    else
+                                    {
+                                        <img src="~/uploads/products/@item.Image" alt="">
+                                    }
+                                </div>
+                                <div class="cart-item-txt col-4">
+                                    <p>@item.Name</p>
+                                    <b style="text-decoration:underline;">Spesifikasiyalar:</b>
+                                    <br /><br />
+                                    @if (item.IsAccessory == false)
+                                    {
+                                        <p><b>Kəsim:</b> @item.Shape</p>
+                                        <p><b>Ölçü: </b> @item.Uzunluq sm x @item.En sm</p>
+                                        <p><b>Rəng:</b> @item.Color </p>
+                                        <p><b>Mərkəzdə Dəlik:</b> @item.Diametr mm</p>
+                                    }
+                                    else
+                                    {
+                                        <p><b>Yapiwqanlig:</b> Tam yapiwgandir</p>
+                                    }
+
+                                </div>
+                                <div class="cart-item-count col-3">
+                                    <small>@totalProductPrice ₼ / hər biri</small>
+                                    <div class="btn-group">
+                                        <button class="btn btn-warning btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Məhsul sayı
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            @for (int i = 1; i <=item.Count; i++)
+                                            {
+                                                <a class="dropdown-item " href="#" data="@i">@i</a>
+                                            }
+
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                    <a asp-action="deleteproduct" asp-controller="shop" asp-route-id="@item.ProductId" class="remove-item">Məhsulu Sil</a>
+                                </div>
+                                <div class="cart-item-price col-1">
+                                    <b class="qiymet">@(item.DiscountPrice>0?item.DiscountPrice:item.Price) ₼</b>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+                <div class="cart-right col-4">
+                    <h4>MƏHSULLARIN QİYMƏTİ</h4>
+                    <br>
+                    <div class="cart-right-body">
+                        <ul>
+                            @foreach (var item in Model)
+                            {
+                                <li>@item.Name <span>@(item.DiscountPrice>0?item.DiscountPrice:item.Price) ₼</span></li>
+
+                            }
+                            <li><b>ÜMUMİ</b><b class="pr-right">@totalPrice AZN</b></li>
+                           
+                            <li><a asp-action="index" asp-controller="checkout">SİFARİŞ VER</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+</main>
+

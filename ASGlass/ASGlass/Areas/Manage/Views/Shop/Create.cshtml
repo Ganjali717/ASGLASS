@@ -1,0 +1,125 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="container-fluid ">
+    <div class="col-12">
+        <h1>Məhsul Yarat</h1>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Name">Adı</label>
+                    <input asp-for="Name" class="form-control" placeholder="Name" style="background-color: #295484; color: white;">
+                    <span class="text-danger" asp-validation-for="Name"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Count">Sayı</label>
+                    <input asp-for="Count" class="form-control" placeholder="Count" style="background-color: #295484; color: white;">
+                    <span class="text-danger" asp-validation-for="Count"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Price">Satış Qiyməti</label>
+                    <input asp-for="Price" class="form-control" placeholder="Price" style="background-color: #295484; color: white;">
+                    <span class="text-danger" asp-validation-for="Price"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="ColorId">Rəngi</label>
+                    <select asp-for="ColorId" class="form-control" id="ColorId" asp-items="@(new SelectList(ViewBag.Colors,"Id","Name"))">
+                        <option selected disabled> Reng sec</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="PolishId">Cilalama növü</label>
+                    <select asp-for="PolishId" class="form-control" id="PolishId" asp-items="@(new SelectList(ViewBag.Polishes,"Id","Name"))">
+                        <option selected disabled>Cilalanma sec</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="CategoryIds">Kateqoriyalar</label>
+                    <select asp-for="CategoryIds" class="form-control" id="CategoryIds" asp-items="@(new SelectList(ViewBag.Categories,"Id","Name"))">
+                        <option selected disabled>Kateqoriyani sec</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="form-row">
+
+                <div class="form-group col-md-3">
+                    <label asp-for="DiscountPrice">Endirimli Qiyməti</label>
+                    <input asp-for="DiscountPrice" class="form-control" placeholder="DiscountPrice" style="background-color: #295484; color: white;">
+                    <span class="text-danger" asp-validation-for="DiscountPrice"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="ThicknessId">Qalınlıq</label>
+                    <select asp-for="ThicknessId" class="form-control" id="ThicknessId" asp-items="@(new SelectList(ViewBag.Thicknesses,"Id","Size"))">
+                        <option disabled selected>Qalinligi sec</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="ShapeId">Kəsim</label>
+                    <select asp-for="ShapeId" class="form-control" id="ShapeId" asp-items="@(new SelectList(ViewBag.Shapes,"Id","Name"))">
+                        <option disabled selected>Formani sec</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <div class="form-check">
+                        <input asp-for="IsAccessory" class="form-check-input" placeholder="IsAccessory" style="background-color: #295484; color: white;">
+                        <label asp-for="IsAccessory" class="form-check-label">IsAccessory</label>
+                        <span class="text-danger" asp-validation-for="IsAccessory"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Uzunluq">Uzunluq</label>
+                    <input asp-for="Uzunluq" class="form-control" placeholder="Uzunluq" style="background-color: #295484; color: white;">
+                    <span class="text-danger" asp-validation-for="Uzunluq"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="En">En</label>
+                    <input asp-for="En" class="form-control" placeholder="En" style="background-color: #295484; color: white;">
+                    <span class="text-danger" asp-validation-for="En"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Diametr">Diametr</label>
+                    <input asp-for="Diametr" class="form-control" placeholder="Diametr" style="background-color: #295484; color: white;">
+                    <span class="text-danger" asp-validation-for="Diametr"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label asp-for="Desc">Alt Yazı</label>
+                    <textarea asp-for="Desc" class="form-control" placeholder="Description" style="background-color: #295484; color: white;"></textarea>
+                    <span class="text-danger" asp-validation-for="Desc"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="PosterFile">Görünən Şəkil</label>
+                    <br />
+                    <br />
+                    <input asp-for="PosterFile" class="form-control" placeholder="PosterFile" style="background-color: #295484; color: #295484;">
+                    <span class="text-danger" asp-validation-for="PosterFile"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label asp-for="ImageFiles">Şəkillər</label>
+                    <br />
+                    <br />
+                    <input asp-for="ImageFiles" class="form-control" placeholder="ImageFiles" style="background-color: #295484; color: #295484;">
+                    <span class="text-danger" asp-validation-for="ImageFiles"></span>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Yarat</button>
+            </div>
+
+        </form>
+    </div>
+
+</div>

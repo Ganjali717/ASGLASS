@@ -1,0 +1,184 @@
+﻿@model ProfileViewModel
+
+@{
+    int order = 0;
+
+}
+
+@section Account{
+    <script src="~/assets/js/account.js"></script>
+}
+
+@if (TempData["Success"] != null)
+{
+    <input type="hidden" id="success" value="@TempData["Success"]" />
+
+}
+
+
+<section id="account-detail">
+    <div class="container">
+        <div class="row justify-content-around">
+            <div class="acc-detail-left col-2">
+                <div class="column">
+                    <a href="#" id="account-order-btn">Sifarişlər <i class="bi bi-person-circle"></i></a>
+                    <br /><br />
+                    <br />
+                    <a href="#" id="account-btn">Account Detalları <i class="bi bi-person-circle"></i></a>
+                    <br /><br />
+                    <br />
+                    <a asp-action="logout" asp-controller="account">Çıxış et <i class="bi bi-box-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="acc-detail-right col-9">
+                <div class="tab-content">
+                    <div class="fade active show" id="tab-pane-order">
+                        <div class="ltn__myaccount-tab-content-inner">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Sifariş No</th>
+                                            <th>Şəkil</th>
+                                            <th>Status</th>
+                                            <th>Hazir olma vaxti</th>
+                                            <th>Satış Qiyməti</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.appUser.Orders)
+                                        {
+                                            order++;
+                                            <tr>
+                                                <td scope="row"> <b>@order )</b> </td>
+                                                <td> <b>AS @item.OrderNumber</b> </td>
+                                                <td><img src="~/uploads/products/@item.ProductImage" style="width:250px; height:180px;" /></td>
+                                                <td>
+                                                    <br />
+                                                    @if (item.Status == OrderStatus.Accepted)
+                                                    {
+                                                        <span style="background-color: #00a170; border-radius: 5px; padding: 10px; color: white; ">Qəbul Olunub</span>
+                                                    }
+                                                    else if (item.Status == OrderStatus.Rejected)
+                                                    {
+                                                        <span style="background-color: red; border-radius: 5px; padding: 10px; color: white;">Rədd Edilib</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span style="background-color: deepskyblue; border-radius: 5px; padding: 10px; color: white;">Gözləmədədir</span>
+                                                    }
+                                                </td>
+                                                <td>@item.CreatedAt.AddDays(5).ToString("HH:mm dd MMM yyyy")</td>
+                                                <td>@item.Price AZN</td>
+                                                <td>
+                                                    @* <a asp-action="detail" asp-controller="shop" asp-route-id="@item.Product.Id" class="btn btn-danger mr-2">Detallı göstər</a>*@
+                                                    <a asp-action="deletefromorder" asp-controller="order" asp-route-id="@item.Id" class="btn btn-warning mt-3">Sil</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fade" id="tab-pane-account">
+                        <h2>Ad, Soyad və ya İstifadəçi adını dəyişin</h2>
+                        <br />
+                        <div class="ltn__form-box">
+                            <form method="post" enctype="multipart/form-data">
+
+                                <div class="column mb-50">
+                                    <div class="form-group">
+                                        <label asp-for="@Model.FullName">Ad və Soyad:</label>
+                                        <input asp-for="@Model.FullName" class="form-control" placeholder="Area">
+                                        <span class="text-danger" asp-validation-for="@Model.FullName"></span>
+                                    </div>
+                                    <br />
+                                    <div class="form-group">
+                                        <label asp-for="@Model.UserName">İstifadəçi adı:</label>
+                                        <input asp-for="@Model.UserName" class="form-control" placeholder="Username">
+                                        <span class="text-danger" asp-validation-for="@Model.UserName"></span>
+                                    </div>
+                                    <br />
+                                    <div class="form-group">
+                                        <label asp-for="@Model.Email">Email adresi:</label>
+                                        <input asp-for="@Model.Email" class="form-control" placeholder="Email">
+                                        <span class="text-danger" asp-validation-for="@Model.Email"></span>
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                                <br />
+                                <fieldset style="width:100%;">
+                                    <h2>Şifrənizi dəyişin</h2>
+                                    <br />
+                                    <div class="column">
+                                        <div class="form-group">
+                                            <label asp-for="OldPassword">Hazırki şifrə:</label>
+                                            <br />
+                                            <input type="password" asp-for="OldPassword" class="form-control">
+                                        </div>
+                                        <br />
+
+                                        <div class="form-group">
+                                            <label asp-for="NewPassword">Yeni şifrə:</label>
+                                            <br />
+                                            <input type="password" asp-for="NewPassword" class="form-control">
+                                        </div>
+                                        <br />
+
+                                        <div class="form-group">
+                                            <label asp-for="ConfirmPassword">Yeni şifrəni təkrarlıyın:</label>
+                                            <br />
+                                            <input type="password" asp-for="ConfirmPassword" class="form-control">
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <br />
+                                <div class="btn-wrapper">
+                                    <button type="submit" class="btn btn-warning text-uppercase w-100">Yenilə</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Toastr{
+    <script>
+        $(document).ready(function () {
+
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "1000",
+                "hideDuration": "1000",
+                "timeOut": "1000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+
+
+
+            if ($("#success").length) {
+                toastr["success"]("İnformasiyanız yeniləndi!")
+            }
+            else if ($("#error").length) {
+                toastr["error"]("Düzgün məlumat daxil edin!")
+            }
+        })
+    </script>
+}

@@ -1,0 +1,84 @@
+﻿@section Overlay{
+    <script src="~/assets/js/overlay.js"></script>
+
+}
+
+<main id="service">
+    <div id="cancelover">
+        <div class="cancel-overlay">
+            <div class="cancel-overlay-head">
+                <a href="" class="">CUSTOMER CARE</a>
+            </div>
+            <div class="cancel-overlay-body">
+                <div class="container">
+                    <h3>MÜŞTƏRİ SERVİSİ</h3>
+                    <ul>
+                        <li><a asp-action="index" asp-controller="contact">Əlaqə saxlıyın</a></li>
+                        <li><a asp-action="index" asp-controller="service">Tez-tez verilən suallar</a></li>
+                    </ul>
+                    <br>
+                    <h3>ALIŞ-VERİŞ VƏ GERİ QAYTARMA</h3>
+                    <ul>
+                        <li><a asp-action="returnpolicy" asp-controller="service">Qaytarma Siyasəti</a></li>
+                    </ul>
+                    <br>
+                    <h3>SİZİN SİFARİŞİNİZ</h3>
+                    <ul>
+                        <li><a asp-action="orderstatus" asp-controller="service">Sifarişin Statusu</a></li>
+                        <li><a asp-action="ordercancel" asp-controller="service">Sifarişi Rədd Etmək</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="srv-menu">
+        <div class="container">
+            <div class="row">
+                <div class="sr-left col-3">
+                    <h3>MÜŞTƏRİ SERVİSİ</h3>
+                    <ul>
+                        <li><a asp-action="index" asp-controller="contact">Əlaqə saxlıyın</a></li>
+                        <li><a asp-action="index" asp-controller="service">Tez-tez verilən suallar</a></li>
+                    </ul>
+                    <br>
+                    <h3>ALIŞ-VERİŞ VƏ GERİ QAYTARMA</h3>
+                    <ul>
+                        <li><a asp-action="returnpolicy" asp-controller="service">Qaytarma Siyasəti</a></li>
+                    </ul>
+                    <br>
+                    <h3>SİZİN SİFARİŞİNİZ</h3>
+                    <ul>
+                        <li><a asp-action="orderstatus" asp-controller="service">Sifarişin Statusu</a></li>
+                        <li><a asp-action="ordercancel" asp-controller="service">Sifarişi Rədd Etmək</a></li>
+                    </ul>
+                </div>
+                <div class="srv-right col-9">
+                    <h2>Müştəri Servisi</h2>
+                    <br>
+                    <ul>
+                        <li> <a href="">Sifarişim haradadır?</a></li>
+                        <li><a href="">Qaytarma Siyasətiniz nədir?</a></li>
+                        <li><a href="">Sizin kəsmə tolerantlığınız nədir?</a></li>
+                        <li> <a href="">Keyfiyyət standartlarınız hansılardır?</a></li>
+                    </ul>
+                    <br>
+                    <h4>Sifarişim haradadır?</h4>
+                    <br>
+                    <p>Sifarişinizin vəziyyətini yoxlamağın ən asan yolu <a asp-action="orderstatus" asp-controller="service">Sifariş Statusu</a>  səhifəsinə keçməkdir. Orada sifariş nömrənizi daxil etməyiniz xahiş olunacaq. Siz həmçinin (866) 452-7707 nömrəli müştəri xidmətləri nömrəmizə zəng edə bilərsiniz.</p>
+                    <br>
+                    <h4>Qaytarma Siyasətiniz nədir?</h4>
+                    <br>
+                    <p>Sifarişinizdən razı qalmağınıza 100% sadiqik. <a asp-action="returnpolicy" asp-controller="service">Qaytarma Siyasətimizi</a> burada nəzərdən keçirin.</p>
+                    <br>
+                    <h4>Sizin kəsmə tolerantlığınız nədir?</h4>
+                    <br>
+                    <p>Sənaye miqyasında qəbul edilən tolerantlıq və kəsmə tolerantlığımız +/- 1/8"-dir.</p>
+                    <br>
+                    <h4>Keyfiyyət standartlarınız hansılardır?</h4>
+                    <br>
+                    <p>Bütün şüşələrdə çılpaq gözlə görünə bilən müxtəlif növ qüsurlar və ya ləkələr var. Bu qaçılmazdır - hətta ən incə xammalda kiçik qüsurlar var. Federal hökumət, normal işıqlandırma altında 11 fut məsafədən üfüqi və ya şaquli olaraq baxıldığında şüşədə heç bir qüsurun görünməməsini əmr edir. Bütün şüşələrimiz bu standartlara cavab verir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

@@ -1,0 +1,147 @@
+﻿@model Product
+@section Customize{
+    <script src="~/assets/js/measurement.js"></script>
+    <script src="~/assets/js/customize.js"></script>
+}
+
+<main id="customize">
+
+    <form method="post" class="form1" enctype="multipart/form-data">
+        <section id="custom-select">
+            <div class="container">
+                <div class="column">
+                    <h3>ŞÜŞƏ</h3>
+                    <br>
+                    <p>Şüşənin enini və uzununu daxil edin</p>
+                    <br>
+                    <div class="select-shape col-12">
+                        <div class="shape-head col-12">
+                            <h5>Ölçüləri Daxil Edin</h5>
+                        </div>
+                        <div class="shapes col-12">
+                            <div class="measurement" id="recmea">
+                                <a asp-action="index" asp-controller="glass" class="redirecturl"><i class="bi bi-arrow-left"></i> GERİYƏ DÖN</a>
+                                <br>
+                                <div class="mt-contain col-12">
+                                    <div class="mtimg col-6">
+                                        <img src="~/assets/images/products/mea-rec.png" alt="">
+                                    </div>
+                                    <div class="mt-right col-6">
+
+                                        <label><b>Uzunlugu Qeyd Edin:</b></label>
+                                        <br /><br />
+                                        <input type="number" name="uzunluq" placeholder="Mesel ucun: 240 sm = (2 metr 40 sm)" class="numberinput" asp-for="Uzunluq" required />
+                                        <span asp-validation-for="Uzunluq"></span>
+                                        <br /><br />
+                                        <label><b>Enini Qeyd Edin:</b></label>
+                                        <br /><br />
+                                        <input type="number" name="en" placeholder="Mesel ucun: 18 sm = (0 metr 18 sm)" class="numberinput" asp-for="En" required />
+                                        <span asp-validation-for="En"></span>
+                                        <br /><br />
+                                        <span class="text-danger input-error d-none">Xanalari doldurun!</span>
+                                        <br />
+                                        <br />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <br>
+                        <a href="">Toplu sifariş üçün bura klikləyin</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="type">
+            <div class="container">
+                <h2>Seçimlər edin</h2>
+                <hr>
+                <div class="row">
+
+                    <div class="customize-types col-8">
+
+                        <div class="glass-type">
+                            <div class="column">
+                                <p><b>Rəng</b></p>
+
+                                <label asp-for="ColorId">Şüşə rəngini seçin:</label>
+                                <select class="form-select form-select-lg" asp-for="ColorId" id="ColorId" asp-items="@(new SelectList(ViewBag.Colors,"Id","Name"))" required>
+                                    <option selected>Rəng seçin</option>
+                                </select>
+                                <span class="text-danger" asp-validation-for="ColorId"></span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="glass-thickness">
+                            <div class="column">
+                                <p><b>Qalınlıq</b></p>
+
+                                <label asp-for="ThicknessId">Şüşə qalınlığını seçin:</label>
+                                <select class="form-select form-select-lg" asp-for="ThicknessId" id="ThicknessId" asp-items="@(new SelectList(ViewBag.Thicknesses,"Id","Size"))">
+                                    <option selected>Qalınlıq seçin</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="glass-edging">
+                            <div class="column">
+                                <p><b>Cilalanma</b></p>
+
+                                <label asp-for="PolishId">Cilalanma növünü seçin:</label>
+                                <select class="form-select form-select-lg" asp-for="PolishId" id="PolishId" asp-items="@(new SelectList(ViewBag.Polishes,"Id","Name"))">
+                                    <option selected>Cilalanma seçin</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="glass-corner">
+                            <div class="column">
+                                <p><b>Künc</b></p>
+                                <label asp-for="CornerId">Şüşənin künc növünü seçin:</label>
+                                <select class="form-select form-select-lg" asp-for="CornerId" id="CornerId" asp-items="@(new SelectList(ViewBag.Corners,"Id","Name"))">
+                                    <option selected>Künc növü</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="glass-hole">
+                            <div class="column">
+                                <p><b>Mərkəzdə Dəlik</b></p>
+                                <div class="gl-hole-item">
+                                    <div class="hole-item">
+                                        <p>Mərkəzdə dəliyin diametr ölçüsünü qeyd edin</p>
+                                        <div class="center-hole col-12">
+                                            <div class="center-hole-left col-5">
+                                                <img src="~/assets/images/products/center-hole.png" alt="">
+                                            </div>
+                                            <div class="center-hole-right col-7">
+                                                <label asp-for="Diametr">Ölçü:</label>
+                                                <br /><br />
+                                                <input class="numberinput p-2" value="0" asp-for="Diametr" type="number" name="diametr"  max="70" placeholder="Diametri qeyd edin zəhmət olmasa"/>
+                                                <br><br /><br />
+                                                <p>Mərkəzdə dəlik yalnız 4 mm dən 70 mm dək ola bilər!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="summary-item col-3">
+                        <small>Məhsul 3-7 iş günü ərzində təhvil verilir</small>
+                        <br><br>
+                        @* <a id="submitform" style="cursor:pointer;">ADD TO CART</a>*@
+                        <input type="submit" value="SƏBƏTƏ AT" id="submitbtn">
+                        <br><br>
+                        <br>
+                        <a asp-action="index" asp-controller="shop">HAZIR OLAN MƏHSULLAR</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </form>
+   
+</main>

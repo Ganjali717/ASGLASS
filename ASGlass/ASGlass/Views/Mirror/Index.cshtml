@@ -1,0 +1,329 @@
+﻿@model CustomViewModel
+@section Measurement{
+    <script src="~/assets/js/measurement.js"></script>
+    <script src="~/assets/js/customize.js"></script>
+
+}
+
+
+<main id="mirror">
+    <section id="custom-select">
+        <div class="container">
+            <div class="column">
+                <h3>GÜZGÜ</h3>
+                <br>
+                <p>İstədiyiniz bu 4 formadan olan güzgünü seçin</p>
+                <br>
+                <div class="select-shape col-12">
+                    <div class="shape-head col-12">
+                        <h5>Kəsim formasını seçin</h5>
+                    </div>
+                    <div class="shapes col-12">
+                        @foreach (var item in Model.Shapes.Take(4))
+                        {
+                            <div class="shapes-item">
+                                <h5>@item.Name</h5>
+                                <br>
+                                <img src="~/assets/images/mirror/@item.Image" alt="">
+                                <br><br><br>
+                                <a asp-action="customize" asp-controller="mirror" asp-route-shapeid="@item.Id">Seçin</a>
+                            </div>
+                        }
+                    </div>
+                    <div class="shapes col-12">
+                        @foreach (var item in Model.Shapes.Skip(4).Take(4))
+                        {
+                            <div class="shapes-item">
+                                <h5>@item.Name</h5>
+                                <br>
+                                <img src="~/assets/images/mirror/@item.Image" alt="">
+                                <br><br><br>
+                                <a asp-action="customize" asp-controller="mirror" asp-route-shapeid="@item.Id">Seçin</a>
+                            </div>
+                        }
+                    </div>
+                    <div class="shapes col-12">
+                        @foreach (var item in Model.Shapes.Skip(8).Take(4))
+                        {
+                            <div class="shapes-item">
+                                <h5>@item.Name</h5>
+                                <br>
+                                <img src="~/assets/images/mirror/@item.Image" alt="">
+                                <br><br><br>
+                                <a asp-action="customize" asp-controller="mirror" asp-route-shapeid="@item.Id">Seçin</a>
+                            </div>
+                        }
+                    </div>
+                    <br>
+                    <a href="">Toplu sifariş üçün bura klikləyin</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="instockmirror">
+        <div class="container">
+            <h2>Hazır Güzgülər</h2>
+            <br>
+            <p>Əgər siz fərqli güzgü sifariş vermək istəmirsinizsə , hazır güzgülərimizi mağazamızdan onlayn əldə edə bilərsiz!</p>
+            <br>
+            <div class="row">
+                <div class="mirror-item col-3">
+                    <h5>Yumru Güzgü</h5>
+                    <br>
+                    <img src="~/assets/images/products/round-mirror-shape.webp" alt="">
+                    <br><br><br>
+                    <a asp-action="index" asp-controller="shop" asp-route-shapeId="@Model.Shapes.FirstOrDefault(x => x.Id == 4).Id">Alış-Veriş Et</a>
+                </div>
+                <div class="mirror-item col-3">
+                    <h5>Oval Güzgü</h5> 
+                    <br>
+                    <img src="~/assets/images/products/oval-mirror-shape.webp" alt="">
+                    <br><br><br>
+                    <a asp-action="index" asp-controller="shop" asp-route-shapeId="@Model.Shapes.FirstOrDefault(x => x.Id == 3).Id">Alış-Veriş Et</a>
+                </div>
+                <div class="mirror-item col-3">
+                    <h5>Düzbucaq Güzgü</h5>
+                    <br>
+                    <img src="~/assets/images/products/rectangle-mirror-shape.webp" alt="">
+                    <br><br><br>
+                    <a asp-action="index" asp-controller="shop" asp-route-shapeId="@Model.Shapes.FirstOrDefault(x => x.Id == 1).Id">Alış-Veriş Et</a>
+                </div>
+                <div class="mirror-item col-3">
+                    <h5>İdman Zalı Güzgüsü</h5>
+                    <br>
+                    <img src="~/assets/images/products/gym-mirror-shape.webp" alt="">
+                    <br><br><br>
+                    <a asp-action="index" asp-controller="shop">Alış-Veriş Et</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-left col-4">
+                    <img src="~/assets/images/about/01CustomMirror (1).webp" alt="">
+                </div>
+                <div class="about-right col-8">
+                    <h3>Bizim Güzgülər Haqqında</h3>
+                    <br>
+                    <p>Bəzən, tam istədiyiniz kimi bir güzgü istəyirsiniz: forma, ölçü, kənarlar və hətta rəng. AS Glass-dan xüsusi şüşə güzgünün gözəlliyi ondan ibarətdir ki, siz dəqiq spesifikasiyalarınıza uyğunlaşdıra bilərsiniz. Siz xüsusi güzgü sifariş etdikdə biz onu öz müəssisəmizdə hazırlayırıq. Bu o deməkdir ki, siz istədiyinizi tez əldə edəcəksiniz!</p>
+                    <br>
+                    <p>Güzgülərimiz haqqında bəzi faktlar:</p>
+                    <ul>
+                        <li>
+                            <p>Güzgülərinizi hazırlamaq üçün yalnız yüksək keyfiyyətli güzgü vərəqlərindən istifadə edirik.</p>
+                        </li>
+                        <li>
+                            <p>Güzgü vərəqəsinin maksimal ölçüsü 3 m 21 sm x 2 m 21 sm.</p>
+                        </li>
+                        <li>
+                            <p>Güzgülərimizin qalınlığı 4 mm dir.</p>
+                        </li>
+                        <li>
+                            <p>Sifarişiniz 5-7 iş günü ərzində tam şəkildə qapınıza çatacaq.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="idea">
+        <div class="container">
+            <div class="row">
+                <div class="idea-left col-8">
+                    <h3>Güzgü İdeaları</h3>
+                    <br>
+                    <p>Güzgülər, əlbəttə ki, hər hansı bir divar üçün gözəl bir əşyadır. Ancaq müştərilərimizin zamanla bizimlə paylaşdıqları fərdi güzgülər üçün bir çox başqa istifadələr var..</p>
+                    <br>
+                    <ul>
+                        <li>
+                            <p>Vanna otağının üstündə - iki oval uzun düzbucaqlı güzgü və ya əksinə əvəz edə bilər..</p>
+                        </li>
+                        <li>
+                            <p>Xüsusi ağac emalı şkafları, daxmalar və digər mebel layihələri kimi DIY mebel layihələri</p>
+                        </li>
+                        <li>
+                            <p>Toylar - müştərilərimiz ziyafət masaları, hədiyyələr və s. üçün dairəvi və oval güzgülər sifariş etmişlər</p>
+                        </li>
+                        <li>
+                            <p>Reflections <a href="">bloqumuzda</a>  təqdim olunanlar kimi sənətkarlıq layihələri.</p>
+                        </li>
+                        <li>
+                            <p>Ev dekorasiyası, xüsusilə kiçik ev və kiçik məkanlar üçün, burada güzgülər otağın daha böyük və parlaq görünməsinə kömək edir..</p>
+                        </li>
+                        <li>
+                            <p>Stol örtükləri - bir çox müştərilərimiz son masalar, gecə stendləri və s. üçün güzgülərdən masa üstü hazırlayıblar..</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="idea-right col-4">
+                    <img src="~/assets/images/about/02CustomMirror.webp" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="edgetypes">
+        <div class="container">
+            <div class="row">
+                <div class="edgetype-left col-4">
+                    <img src="~/assets/images/products/03CustomMirror.webp" alt="">
+                </div>
+                <div class="edgetype-right col-8">
+                    <h3>
+                        Xüsusi güzgülər üçün kənar növləri
+                    </h3>
+                    <br>
+                    <p>Fərdi güzgü üçün bir neçə kənar növləri tövsiyə edirik. Güzgü sifarişinin fərdiləşdirmə mərhələsində bu seçimləri seçəcəksiniz.</p>
+                    <br>
+                    <ul>
+                        <li>
+                            <p><b>Düz hamar kənar: </b> Bu tətbiqdə güzgünün kənarları hamar bir parlaq bitirmə üçün cilalanmışdır. Güzgünüzün kənarları görünən və minimalist görünüşə üstünlük verdiyiniz zaman düz cila seçin.</p>
+                        </li>
+                        <li>
+                            <p><b>Əyilmiş hamar kənar: </b>Bu kənar tipində güzgünün kənarları müəyyən bir "görünüş" yaratmaq üçün müəyyən bir əyilmə eni ilə bucaq altında kəsilir və cilalanır. Bu proses güzgünün kənarlarını daha incə, mərkəzdə isə daha qalın edir. Bu, adətən güzgünün otaqda diqqət mərkəzində olduğu yerlərdə istifadə olunur. Güzgü ətrafındakı əyilmə eni 1/4" ilə 1 3/4" arasında dəyişə bilər. Zəhmət olmasa, sifarişinizin fərdiləşdirmə mərhələsində əyilmə eninizi seçin.</p>
+                        </li>
+                        <li>
+                            <p><b>Dikişli kənar: </b> Bu tətbiqdə güzgü kəsildikdən sonra iti kənarları tutqunlaşdırmaq üçün kənarları zımparalanır. Bu güzgünün idarə olunmasını təhlükəsiz etmək üçündür. Güzgü çərçivəyə salınacaqsa və kənarların görünməyən tətbiqlərdə tikişli kənarı seçin.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="installation">
+        <div class="container">
+            <h2>Güzgü Quraşdırılması</h2>
+            <br>
+            <p>Fərdi güzgü quraşdırmaq üçün bir neçə seçiminiz var. Ümumiyyətlə, güzgünüzü divarınızın möhkəm hissəsinə (mümkünsə, dirəklərə) quraşdırmağınızdan əmin olmalısınız. Tipik olaraq, müştərilərimizə əlavə dəstək üçün güzgü mastikasından və ya dekorativ kliplərdən və ya j-barlardan istifadə etməyi tövsiyə edirik.</p>
+            <br>
+            <div class="row">
+                <div class="inst-left col-8">
+                    <h4>Güzgü Mastikası:</h4>
+                    <ul>
+                        <li>
+                            <p>Sıx və qalıcı bir əlaqə təmin edir.</p>
+                        </li>
+                        <li>
+                            <p>DIY layihələri üçün mükəmməldir.</p>
+                        </li>
+                        <li>
+                            <p>Yüksək rütubətli yerlərdə (30°-dən 100°F-ə qədər) istifadə edilə bilər.</p>
+                        </li>
+                        <li>
+                            <p>Ekoloji cəhətdən təmiz və az emissiya edən material.</p>
+                        </li>
+                    </ul>
+                    <br>
+                    <h4>Dekorativ kliplər:</h4>
+                    <ul>
+                        <li>
+                            <p>Daha yüngül çəkidə olan güzgülərin künclərinə və ya yanlarına quraşdırın.</p>
+                        </li>
+                        <li>
+                            <p>Quraşdırma vintləri və ankerlər daxildir.</p>
+                        </li>
+                    </ul>
+                    <br>
+                    <h4>J-bars or L-bars</h4>
+                    <ul>
+                        <li>
+                            <p>Daha ağır bir güzgünün üst və ya alt hissəsini dəstəkləmək üçün istifadə olunur.</p>
+                        </li>
+                        <li>
+                            <p>Üç rəngdə mövcuddur: xrom, fırçalanmış nikel və mis</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="inst-right col-4">
+                    <img src="~/assets/images/products/04CustomMirror.webp" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="container">
+            <h4>TEZ-TEZ VERİLƏN SUALLAR</h4>
+            <br>
+            <div class="column">
+                <button class="accordion">Hansı növ şüşə ni online şəkildə əldə edə bilərəm?</button>
+                <div class="panel">
+                    <p>Siz online olaraq yuxarıda qeyd olunan növ şüşələri əldə edə bilərsiniz.</p>
+                </div>
+                <br>
+                <button class="accordion">Verilən və ya sifariş olunan ölçülərin məhsulun hazırda olduqda eynisi mi olacaq?</button>
+                <div class="panel">
+                    <p>Bəli qeyd etdiyiniz şüşənin və ya digər məhsulun ölçüləri dəqiqlik ilə CNS kəsim növündən istifadə olunaraq kəsilir.</p>
+                </div>
+                <br>
+                <button class="accordion">Onlayn sifariş verə biləcəyim ən böyük şüşə parçası hansıdır?</button>
+                <div class="panel">
+                    <p>Maksimal kəsə biləcəyimiz 8x8 dir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog">
+        <div class="container">
+            <h2>BLOG</h2>
+            <div class="column">
+                <div class="blog-head col-12">
+                    <div class="blog-head-item col-5">
+                        <img src="~/assets/images/blog/glass-ideas-for-home-and-office.png" alt="">
+                        <br><br>
+                        <a href="">Ev və biznes üçün ofis şüşələri ideyaları</a>
+                        <br><br>
+                        <p>
+                            Ofisinizin görünüşünü yaxşılaşdırmağın yollarını axtarırsınız? Dulles Glass-dan üstün fərdiləşdirilə bilən şüşə və güzgülərimizlə sizə lazım olanı tam olaraq əldə edirik! Dizaynerlərimizin ən son ideyaları üçün bizi izləyin və iş yerinizi yeniləmək üçün ilham alın.
+                        </p>
+                    </div>
+                    <div class="blog-head-item col-5">
+                        <img src="~/assets/images/blog/foam-mirror-diy.png" alt="">
+                        <br><br>
+                        <a href="">Yay tendensiyası - köpük güzgülər</a>
+                        <br><br>
+                        <p>
+                            Bu tez və asan DIY köpük güzgü layihəsi ilə ev dekorunuzu gözəlləşdirin. Cəmi bir neçə materialla, evinizdə valehedici amil yaradacaq bulud kimi bir güzgü, köpük strafor bəzək yaradın..
+                        </p>
+                    </div>
+                </div>
+                <div class="blog-body col-12">
+                    <div class="blog-body-item col-4">
+                        <i class="bi bi-sliders"></i>
+                        <br>
+                        <h4>FƏRQLİ KƏSİM</h4>
+                        <br>
+                        <span></span>
+                        <br>
+                        <p>Fərqli kəsim sayəsində verilən kəsim növlərindən seçin.</p>
+                    </div>
+                    <div class="blog-body-item col-4">
+                        <i class="bi bi-currency-dollar"></i>
+                        <br>
+                        <h4>PULSUZ ÇATDIRILMA</h4>
+                        <br>
+                        <span></span>
+                        <br>
+                        <p>Bakı şəhərinin hər bir yerinə pulsuz çatdırılma</p>
+                    </div>
+                    <div class="blog-body-item col-4">
+                        <i class="bi bi-truck"></i>
+                        <br>
+                        <h4>SIĞORTALI ÇATDIRILMA</h4>
+                        <br>
+                        <span></span>
+                        <br>
+                        <p>Bütün məhsullar qırılmadan və 100% təmiz çatdırılma</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

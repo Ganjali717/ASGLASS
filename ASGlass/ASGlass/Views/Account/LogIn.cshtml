@@ -1,0 +1,37 @@
+﻿@model MemberLoginViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<main id="userform">
+    <section id="user-login">
+        <div class="container">
+            <div class="column">
+                <div class="login-head">
+                    <h2>Daxil olun</h2>
+                </div>
+                <hr>
+                <div class="login-body col-4">
+                    <form method="post" id="form">
+                        <label asp-for="UserName">Adınizi və ya İstifadəçi adını daxil edin</label>
+                        <br>
+                        <input type="text"  placeholder="Adınızı daxil edin" asp-for="UserName"  id="UserName">
+                        <span class="text-danger" asp-validation-for="UserName"></span>
+                        <small class="log-in-email"></small>
+                        <br>
+                        <label asp-for="Password">Şifrənizi daxil edin</label>
+                        <br>
+                        <input asp-for="Password" type="password" id="password" placeholder="Şifrənizi daxil edin">
+                        <small class="log-in-password"></small>
+                        <br><br>
+                        <input type="submit" >
+                        <br><br>
+                        <a asp-action="forgotpassword" asp-controller="account">Şifrənizi unutmusunuz?</a>
+                        <br>
+                        <a asp-action="register" asp-controller="account">Qeydiyyatdan keç</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

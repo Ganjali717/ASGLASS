@@ -1,0 +1,100 @@
+﻿@{
+    Layout = null;
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link href="~/assets/images/logo/headlogo.png" rel="shortcut icon" type="image/x-icon">
+    <title>AS Glass Azerbaijan</title>
+
+}
+
+
+<main id="checkout">
+    <div class="container">
+
+        <div class="column">
+            <div class="checkout-head">
+                <img src="~/assets/images/logo/asglasslogosu.png" />
+                <ul>
+                    <li class="active"><a href="">SHIPPING</a></li>
+                    <li><a href="">PAYMENT</a></li>
+                    <li><a href="">REVIEW</a></li>
+                </ul>
+            </div>
+            <div class="checkout-body">
+                <div class="checkout-left col-8">
+                    <h4>BILLING & SHIPPING INFORMATION</h4>
+                    <br>
+                    <form action="" method="post">
+
+                        <div class="row col-12">
+                            <div class="form-item col-12">
+                                <label for="">Ad və Soyad  *</label>
+                                <br>
+                                <input type="text" placeholder="Ad və Soyadı daxil edin" name="fullname">
+                            </div>
+                        </div>
+                        <div class="row col-12">
+                            <div class="form-item col-12">
+                                <label for="">Ünvan *</label>
+                                <br>
+                                <input type="text" placeholder="Ünvan daxil edin">
+                            </div>
+                        </div>
+                        <div class="row col-12">
+                            <div class="form-item col-12">
+                                <label for="">Şəhər seçin*</label>
+                                <br>
+                                <select name="" id="">
+                                    <option value="">Baku</option>
+                                    <option value="">Sumqayit</option>
+                                    <option value="">Quba</option>
+                                    <option value="">Gence</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row col-12">
+                            <div class="form-item col-6">
+                                <label for="">ZIP *</label>
+                                <br>
+                                <input type="text" placeholder="Enter First Name">
+                            </div>
+                            <div class="form-item col-6">
+                                <label for="">Şirkət Adı </label>
+                                <br>
+                                <input type="text" placeholder="Şirkət adını daxil edin">
+                            </div>
+                        </div>
+                        <div class="row col-12">
+                            <div class="form-item col-6">
+                                <label for="email">Email</label>
+                                <br>
+                                <input type="email" placeholder="Enter email" name="email">
+                            </div>
+                            <div class="form-item col-6">
+                                <label for="">Əlaqə nömrəsi</label>
+                                <br>
+                                <input type="tel" placeholder="+994 50 *** ** **">
+                            </div>
+                        </div>
+                        <input type="submit" asp-action="checkout" value="Continue to Payment">
+                    </form>
+                </div>
+                <div class="checkout-right col-3">
+                    <h4>CART TOTALS</h4>
+                    <br>
+                    <div class="checkout-right-body">
+                        <ul>
+                            <li>Merchandise <span>$485</span></li>
+                            <li>Shopping & Handling <span>FREE</span></li>
+                            <li><b>TOTAL</b><b class="pr-right">$485</b></li>
+                            <br>
+                            <li><a href="">Continue to Payment</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <p>© 2021 Dulles Glass and Mirror. All rights reserved.</p>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,259 @@
+﻿@model CustomViewModel
+
+@section Measurement{
+    <script src="~/assets/js/measurement.js"></script>
+    <script src="~/assets/js/customize.js"></script>
+}
+
+
+
+<main id="glass">
+    <section id="custom-select">
+        <div class="container">
+            <div class="column">
+                <h3>ŞÜŞƏ</h3>
+                <br>
+                <p>İstədiyiniz bu 4 formadan olan şüşə ni seçin</p>
+                <br>
+                <div class="select-shape col-12">
+                    <div class="shape-head col-12">
+                        <h5>Kəsim formasını seçin</h5>
+                    </div>
+                    <div class="shapes col-12">
+                        @foreach (var item in Model.Shapes.Take(4))
+                        {
+                            <div class="shapes-item">
+                                <h5>@item.Name</h5>
+                                <br>
+                                <img src="~/assets/images/products/@item.Image" alt="">
+                                <br><br><br>
+                                <a asp-action="customize" asp-controller="glass" asp-route-shapeid="@item.Id">Seçin</a>
+                            </div>
+                        }
+                    </div>
+                    <br>
+                    <a href="">Toplu sifariş üçün bura klikləyin</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about-us">
+        <div class="container">
+            <div class="row">
+                <div class="about-us-left col-8">
+                    <h4>Bizim Şüşələr Haqqında</h4>
+                    <br><br>
+                    <p>Sifariş verərkən bizim xüsusi şüşələrimiz sizin spesifikasiyalarınıza uyğun hazırlanır. Biz xüsusi şüşə məhsullarımız üçün yalnız ən yüksək keyfiyyətli şüşə əldə edirik və onu öz fabrikimizdə istehsal edirik. Bu o deməkdir ki, biz hazırladığımız hər bir xüsusi kəsilmiş şüşə məhsulun keyfiyyətinə əmin ola bilərik.</p>
+                    <p>Şüşənizi ehtiyacınız olan şəkildə fərdiləşdirməyin bir neçə yolu var:</p>
+                    <ul>
+                        <li>
+                            <p><b>Şüşə Qalınlığı - </b>Bizim şüşələr bu qalınlıqda olur: 4 mm, 6 mm, 8 mm and 10 mm.</p>
+                        </li>
+                        <li>
+                            <p><b>Şüşə Rəngləri - </b>Bizim şüşələr şəffaf(ağ), qara(tünd), mat(sətin) və qəhvəyi rəngdə vardır.</p>
+                        </li>
+                        <li>
+                            <p><b>Şüşə Gücü - </b>Şüşə güc tərəfindən sadə və temper olunmuş (yəni bişmiş olur).</p>
+                        </li>
+                        <li>
+                            <p><b>Şüşə qırağları - </b>Şüşə qırağlarına fasetli və radajlı novlərindən seçə bilərsiniz.</p>
+                        </li>
+                        <li>
+                            <p><b>Şüşənin küncü - </b>Şüşənin küncünü yumru və düz kəsilmiş seçim edə bilərsiniz.</p>
+                        </li>
+                        <li>
+                            <p><b>Mərkəzdən dəlik açmaq - </b>Əgər siz şüşənin mərkəzində dəlik istəyirsinizsə, biz istədiyiniz diametrdə bu dəliyi aça bilərik.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="about-us-right col-4">
+                    <img src="~/assets/images/about/Custom-Table082817-05.webp" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="where-use">
+        <div class="container">
+            <div class="row">
+                <div class="where-use-left col-4">
+                    <img src="~/assets/images/about/Custom-Shelf-082817-02.webp" alt="">
+                </div>
+                <div class="where-use-right col-8">
+                    <h4>Şüşələri Harada İstifadə Edə Bilərik</h4>
+                    <br>
+                    <p>Bizim müştərilər bu şüşələri bir çox fərqli yerlərdə istifadə edə bilərlər. Bu yerləri sizə təqdi edirik:</p>
+                    <ul>
+                        <li>
+                            <p>Veranda masası üstü</p>
+                        </li>
+                        <li>
+                            <p>Antik mebel qoruyucuları</p>
+                        </li>
+                        <li>
+                            <p>Şkaf şüşəsi</p>
+                        </li>
+                        <li>
+                            <p>Şüşə ilə qəza yarandığı halda həmin şüşənin dəyişdirilməsi</p>
+                        </li>
+                        <li>
+                            <p>Şüşə rəflər üçün</p>
+                        </li>
+                        <li>
+                            <p>Sənətkarlıq və dizayn layihələrində</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ordering">
+        <div class="container">
+            <h4>Şüşələrin Onlayn Sifarişi</h4>
+            <br>
+            <ul>
+                <li>
+                    <p><b>Şüşə İstehsalı- </b> sizin xüsusi şüşə məhsulunuz sifariş verdikdən sonra öz zavodumuzda hazırlanır. Əmin ola bilərsiniz ki, sizin məmnunluğunuz üçün şüşə məhsulunuzun keyfiyyətini özümüz idarə edirik.</p>
+                </li>
+                <li>
+                    <p><b>Şüşə Qablaşdırması - </b> sadəcə müştərilərimizdən soruşun! Onlar sizə deyəcəklər ki, qablaşdırma şüşəni sizə gedən yolda təhlükəsiz saxlamaq üçün mükəmməldir.</p>
+                </li>
+                <li>
+                    <p><b>Şüşə Çatdırılma - </b> şüşə məhsulunuz əksər hallarda 5-7 iş günü ərzində qapınıza çatacaq.</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="container">
+            <h4>TEZ-TEZ VERİLƏN SUALLAR</h4>
+            <br>
+            <div class="column">
+                <button class="accordion">Hansı növ şüşə ni online şəkildə əldə edə bilərəm?</button>
+                <div class="panel">
+                    <p>Siz online olaraq yuxarıda qeyd olunan növ şüşələri əldə edə bilərsiniz.</p>
+                </div>
+                <br>
+                <button class="accordion">Verilən və ya sifariş olunan ölçülərin məhsulun hazırda olduqda eynisi mi olacaq?</button>
+                <div class="panel">
+                    <p>Bəli qeyd etdiyiniz şüşənin və ya digər məhsulun ölçüləri dəqiqlik ilə CNS kəsim növündən istifadə olunaraq kəsilir.</p>
+                </div>
+                <br>
+                <button class="accordion">Onlayn sifariş verə biləcəyim ən böyük şüşə parçası hansıdır?</button>
+                <div class="panel">
+                    <p>Maksimal kəsə biləcəyimiz 8x8 dir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="videos">
+        <div class="container">
+            <h2>VİDEO GÖRÜNTÜLƏR</h2>
+            <br><br>
+                <div class="row">
+                    <video width="1000" height="550" autoplay muted style="z-index:99;" id="videobody">
+                        <source src="~/assets/videos/video.MP4" type="video/mp4" />
+                    </video>
+                </div>
+        </div>
+    </section>
+
+    <section id="related">
+        <div class="container">
+            <h2>ŞÜŞƏ NÖVLƏRİ</h2>
+            <br><br>
+            <div class="row">
+                <div class="related-item col-2">
+                    <img src="~/assets/images/products/TypeBronze.webp" alt="">
+                    <br><br>
+                    <h5>Qəhvəyi Şüşə</h5>
+                </div>
+                <div class="related-item col-2">
+                    <img src="~/assets/images/products/TypeGray.webp" alt="">
+                    <br><br>
+                    <h5>Qara Şüşə</h5>
+                </div>
+                <div class="related-item col-2">
+                    <img src="~/assets/images/products/TypeFrosted.webp" alt="">
+                    <br><br>
+                    <h5>Sətin Şüşə</h5>
+                </div>
+                <div class="related-item col-2">
+                    <img src="~/assets/images/products/TypeBeveled.webp" alt="">
+                    <br><br>
+                    <h5>Fasetli Şüşə</h5>
+                </div>
+                <div class="related-item col-2">
+                    <img src="~/assets/images/products/TypeLowIron.webp" alt="">
+                    <br><br>
+                    <h5>Şəffaf Şüşə</h5>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="blog">
+        <div class="container">
+            <h2>BLOG</h2>
+            <div class="column">
+                <div class="blog-head col-12">
+                    <div class="blog-head-item col-5">
+                        <img src="~/assets/images/blog/glass-ideas-for-home-and-office.png" alt="">
+                        <br><br>
+                        <a href="">Ev və biznes üçün ofis şüşələri ideyaları</a>
+                        <br><br>
+                        <p>
+                            Ofisinizin görünüşünü yaxşılaşdırmağın yollarını axtarırsınız? Dulles Glass-dan üstün fərdiləşdirilə bilən şüşə və güzgülərimizlə sizə lazım olanı tam olaraq əldə edirik! Dizaynerlərimizin ən son ideyaları üçün bizi izləyin və iş yerinizi yeniləmək üçün ilham alın.
+                        </p>
+                    </div>
+                    <div class="blog-head-item col-5">
+                        <img src="~/assets/images/blog/foam-mirror-diy.png" alt="">
+                        <br><br>
+                        <a href="">Yay tendensiyası - köpük güzgülər</a>
+                        <br><br>
+                        <p>
+                            Bu tez və asan DIY köpük güzgü layihəsi ilə ev dekorunuzu gözəlləşdirin. Cəmi bir neçə materialla, evinizdə valehedici amil yaradacaq bulud kimi bir güzgü, köpük strafor bəzək yaradın..
+                        </p>
+                    </div>
+                </div>
+                <div class="blog-body col-12">
+                    <div class="blog-body-item col-4">
+                        <i class="bi bi-sliders"></i>
+                        <br>
+                        <h4>FƏRQLİ KƏSİM</h4>
+                        <br>
+                        <span></span>
+                        <br>
+                        <p>Fərqli kəsim sayəsində verilən kəsim növlərindən seçin.</p>
+                    </div>
+                    <div class="blog-body-item col-4">
+                        <i class="bi bi-currency-dollar"></i>
+                        <br>
+                        <h4>PULSUZ ÇATDIRILMA</h4>
+                        <br>
+                        <span></span>
+                        <br>
+                        <p>Bakı şəhərinin hər bir yerinə pulsuz çatdırılma</p>
+                    </div>
+                    <div class="blog-body-item col-4">
+                        <i class="bi bi-truck"></i>
+                        <br>
+                        <h4>SIĞORTALI ÇATDIRILMA</h4>
+                        <br>
+                        <span></span>
+                        <br>
+                        <p>Bütün məhsullar qırılmadan və 100% təmiz çatdırılma</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
