@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\LENOVO\\OneDrive\\Desktop\\AS-Glass-Backend\\ASGlass\\ASGlass\\ASGlass.csproj": {}
+    "C:\\Users\\LENOVO\\OneDrive\\Desktop\\ASGLASS\\ASGlass\\ASGlass\\ASGlass.csproj": {}
   },
   "projects": {
-    "C:\\Users\\LENOVO\\OneDrive\\Desktop\\AS-Glass-Backend\\ASGlass\\ASGlass\\ASGlass.csproj": {
+    "C:\\Users\\LENOVO\\OneDrive\\Desktop\\ASGLASS\\ASGlass\\ASGlass\\ASGlass.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LENOVO\\OneDrive\\Desktop\\AS-Glass-Backend\\ASGlass\\ASGlass\\ASGlass.csproj",
+        "projectUniqueName": "C:\\Users\\LENOVO\\OneDrive\\Desktop\\ASGLASS\\ASGlass\\ASGlass\\ASGlass.csproj",
         "projectName": "ASGlass",
-        "projectPath": "C:\\Users\\LENOVO\\OneDrive\\Desktop\\AS-Glass-Backend\\ASGlass\\ASGlass\\ASGlass.csproj",
+        "projectPath": "C:\\Users\\LENOVO\\OneDrive\\Desktop\\ASGLASS\\ASGlass\\ASGlass\\ASGlass.csproj",
         "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LENOVO\\OneDrive\\Desktop\\AS-Glass-Backend\\ASGlass\\ASGlass\\obj\\",
+        "outputPath": "C:\\Users\\LENOVO\\OneDrive\\Desktop\\ASGLASS\\ASGlass\\ASGlass\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
