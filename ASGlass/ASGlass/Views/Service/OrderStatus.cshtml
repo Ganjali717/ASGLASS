@@ -62,7 +62,7 @@
                     <form method="post" asp-action="index" asp-controller="order">
                         <label for="">Sifarişin Kodu:</label>
                         <br>
-                        <input type="text" placeholder="Sifariş nömrəsini daxil edin" name="orderstatus" >
+                        <input type="number" class="form-control shadow-none" placeholder="Sifariş nömrəsini daxil edin" name="orderstatus" required  oninvalid="this.setCustomValidity('Sifaris kodunu daxil edin!')" oninput="this.setCustomValidity('')">
                         <br><br>
                         <input type="submit" value="Axtar">
                     </form>

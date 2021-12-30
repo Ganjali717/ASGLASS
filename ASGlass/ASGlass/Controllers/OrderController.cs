@@ -27,21 +27,27 @@ namespace ASGlass.Controllers
         [HttpPost]
         public IActionResult Index()
         {
-            var orders = _context.Orders.ToList();
-
-            int? ordercode = Convert.ToInt32(HttpContext.Request.Form["orderstatus"]);
             var query = _context.Orders.Include(x => x.Product).AsQueryable();
 
-            if (orders.Any(x => x.OrderNumber == ordercode))
+            long? ordercode = Convert.ToInt64(HttpContext.Request.Form["orderstatus"]);
+
+            if(ordercode == null)
             {
-                query = query.Include(x => x.Product).Where(x => x.OrderNumber == ordercode);
-               
+
             }
             else
             {
-                ModelState.AddModelError("OrderStatus", "Sehfdir");
-                return RedirectToAction("orderstatus", "service");   
+                if (query.Any(x => x.OrderNumber == ordercode))
+                {
+                    query = query.Include(x => x.Product).Where(x => x.OrderNumber == ordercode);
+                }
+                else
+                {
+                    return RedirectToAction("orderstatus", "service");
+
+                }
             }
+
 
             OrderViewModel orderVM = new OrderViewModel()
             {

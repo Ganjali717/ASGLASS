@@ -40,19 +40,19 @@
                         <form method="post" >
                             <label asp-for="EmailForm.FromEmail">Email Ünvanı<i class="bi bi-asterisk"></i></label>
                             <br>
-                            <input asp-for="EmailForm.FromEmail" type="text" placeholder="Email adresini daxil edin" name="email">
+                            <input asp-for="EmailForm.FromEmail" type="email" class="form-control shadow-none" placeholder="Email adresini daxil edin" name="email" required>
                             <br><br>
-                            <label asp-for="EmailForm.FromName">Ad<i class="bi bi-asterisk"></i></label>
+                            <label asp-for="EmailForm.FromName">Ad ve Soyad<i class="bi bi-asterisk"></i></label>
                             <br>
-                            <input asp-for="EmailForm.FromName" type="text" placeholder="Adinizi daxil edin">
+                            <input asp-for="EmailForm.FromName" type="text" class="form-control shadow-none" placeholder="Adinizi daxil edin" required>
                             <br><br>
                             <label asp-for="EmailForm.Phone">Mobil nömrə<i class="bi bi-asterisk"></i></label>
                             <br>
-                            <input asp-for="EmailForm.Phone" type="number" placeholder="Telefon nomrenizi daxil edin">
+                            <input asp-for="EmailForm.Phone" type="number" class="form-control shadow-none" placeholder="Telefon nomrenizi daxil edin" required>
                             <br><br>
                             <label asp-for="EmailForm.Message">Məktub yaz <i class="bi bi-asterisk"></i></label>
                             <br>
-                            <textarea asp-for="EmailForm.Message"  id="" cols="30" rows="10" placeholder="Mesajinizi daxil edin" name="textarea"></textarea>
+                            <textarea asp-for="EmailForm.Message" class="form-control shadow-none"  id="" cols="30" rows="10" placeholder="Mesajinizi daxil edin" name="textarea" required></textarea>
                            @* <div class="form-check row">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
                                 <label class="form-check-label" for="flexCheckChecked">

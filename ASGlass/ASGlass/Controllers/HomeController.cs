@@ -29,7 +29,7 @@ namespace ASGlass.Controllers
                 Sliders = _context.Sliders.ToList(), 
                 Categories = _context.Categories.ToList(),
                 Products = _context.Products.Include(x => x.ProductImages).ToList(), 
-                Comments = _context.Comments.ToList()
+                Comments = _context.Comments.Where(x => x.Rate >= 4).ToList()
             };
             return View(homeVM);
         }

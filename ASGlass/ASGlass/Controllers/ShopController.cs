@@ -218,7 +218,7 @@ namespace ASGlass.Controllers
 
             if (!String.IsNullOrEmpty(search))
             {
-                query = query.Where(x => x.Name.Contains(search));
+                query = query.Where(x => x.Name.Contains(search) || x.Desc.Contains(search));
                 productVM.Products = query.ToList();
             }
 

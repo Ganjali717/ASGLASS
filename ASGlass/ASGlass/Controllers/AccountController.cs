@@ -105,14 +105,14 @@ namespace ASGlass.Controllers
 
             if (member != null)
             {
-                ModelState.AddModelError("UserName", "UserName already taken!");
+                ModelState.AddModelError("UserName", "Bu ad istifadə olunub!");
                 return View();
             }
 
             member = await _userManager.FindByEmailAsync(registerVM.Email);
             if (member != null)
             {
-                ModelState.AddModelError("Email", "Email already taken!");
+                ModelState.AddModelError("Email", "Bu Email ünvanı istifadə olunub!");
                 return View();
             }
 
@@ -191,7 +191,7 @@ namespace ASGlass.Controllers
 
             if (member.Email != profileVM.Email && _userManager.Users.Any(x => x.NormalizedEmail == profileVM.Email.ToUpper()))
             {
-                ModelState.AddModelError("Email", "This email has already been taken!");
+                ModelState.AddModelError("Email", "Bu Email adresi istifadə olunub!");
                 return View();
             }
 

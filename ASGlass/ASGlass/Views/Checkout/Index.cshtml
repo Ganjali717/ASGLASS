@@ -14,14 +14,14 @@
             <div class="checkout-head">
                 <img src="~/assets/images/logo/asglasslogosu.png" />
                 <ul>
-                    <li class="active"><a href="">SHIPPING</a></li>
-                    <li><a href="">PAYMENT</a></li>
-                    <li><a href="">REVIEW</a></li>
+                    <li class="active"><a href="">ALIŞ-VERİŞ</a></li>
+                    <li><a href="">ÖDƏNİŞ</a></li>
+                    <li><a href="">QAİMƏ</a></li>
                 </ul>
             </div>
             <div class="checkout-body">
                 <div class="checkout-left col-8">
-                    <h4>BILLING & SHIPPING INFORMATION</h4>
+                    <h4 class="text-center">ALIŞ-VERİŞ ÜÇÜN MƏLUMAT ANKETİNİ DOLDURUN</h4>
                     <br>
                     <form action="" method="post">
 
@@ -29,21 +29,21 @@
                             <div class="form-item col-12">
                                 <label for="">Ad və Soyad  *</label>
                                 <br>
-                                <input type="text" placeholder="Ad və Soyadı daxil edin" name="fullname">
+                                <input type="text" placeholder="Ad və Soyadı daxil edin" name="fullname" required>
                             </div>
                         </div>
                         <div class="row col-12">
                             <div class="form-item col-12">
                                 <label for="">Ünvan *</label>
                                 <br>
-                                <input type="text" placeholder="Ünvan daxil edin">
+                                <input type="text" placeholder="Ünvan daxil edin" required>
                             </div>
                         </div>
                         <div class="row col-12">
                             <div class="form-item col-12">
                                 <label for="">Şəhər seçin*</label>
                                 <br>
-                                <select name="" id="">
+                                <select name="" id="" required>
                                     <option value="">Baku</option>
                                     <option value="">Sumqayit</option>
                                     <option value="">Quba</option>
@@ -55,7 +55,7 @@
                             <div class="form-item col-6">
                                 <label for="">ZIP *</label>
                                 <br>
-                                <input type="text" placeholder="Enter First Name">
+                                <input type="text" placeholder="Enter First Name" required>
                             </div>
                             <div class="form-item col-6">
                                 <label for="">Şirkət Adı </label>
@@ -67,34 +67,32 @@
                             <div class="form-item col-6">
                                 <label for="email">Email</label>
                                 <br>
-                                <input type="email" placeholder="Enter email" name="email">
+                                <input type="email" placeholder="Enter email" name="email" required>
                             </div>
                             <div class="form-item col-6">
                                 <label for="">Əlaqə nömrəsi</label>
                                 <br>
-                                <input type="tel" placeholder="+994 50 *** ** **">
+                                <input type="tel" placeholder="+994 50 *** ** **" required>
                             </div>
                         </div>
-                        <input type="submit" asp-action="checkout" value="Continue to Payment">
+                        <input type="submit" asp-action="checkout" value="Ödəniş Üçün Davam Edin">
                     </form>
                 </div>
                 <div class="checkout-right col-3">
-                    <h4>CART TOTALS</h4>
+                    <h4>ÜMUMİ MƏHSULLAR</h4>
                     <br>
                     <div class="checkout-right-body">
                         <ul>
                             <li>Merchandise <span>$485</span></li>
                             <li>Shopping & Handling <span>FREE</span></li>
                             <li><b>TOTAL</b><b class="pr-right">$485</b></li>
-                            <br>
-                            <li><a href="">Continue to Payment</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <br>
             <br>
-            <p>© 2021 Dulles Glass and Mirror. All rights reserved.</p>
+            <p>© 2021 AS GLASS Güzgü və Şüşə. Bütün hüquqlar qorunur.</p>
         </div>
     </div>
 </main>
