@@ -169,6 +169,38 @@
         </div>
     </section>
 
+    <section id="showcommentations" class="col-12 p-5 mb-5"> \
+        <h2 class="text-center">Müştərilərimizin Rəyləri</h2>
+    <br /><br />
+        <div class="container">
+            <div class="column">
+                @foreach (var item in Model.Komentler.Where(x => x.ProductId == Model.Product.Id).Take(4))
+                {
+                    <div class="comment-item col-12 d-flex row border-bottom">
+                        <div class="commet-title col-5">
+                            <p><b>@item.Username</b></p>
+                            <label>
+                                @for (int i = 0; i < item.Rate; i++)
+                                {
+                                    <span class="icon" style="color:gold;">★</span>
+                                }
+                            </label>
+                            <br />
+                            @item.Date
+                        </div>
+                        <div class="comment-body col-6">
+                            <p>@item.Text</p>
+                        </div>
+                    </div>
+                    <br /><br />
+                }
+
+
+            </div>
+        </div>
+    </section>
+
+
     <section id="advertising">
         <div class="container">
             <div class="adv-item">

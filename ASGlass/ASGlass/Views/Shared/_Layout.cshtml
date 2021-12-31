@@ -166,8 +166,18 @@
                     </ul>
                     <br>
                     <div class="overlay-book">
-                        <a asp-action="login" asp-controller="account">Log in</a>
-                        <a href="" id="overlay-book-btn">Book a demo</a>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a asp-action="showaccount" asp-controller="account" asp-route-id="@member.Id" id="circle">@User.Identity.Name</a>
+                            <a class="font-weight-bold" asp-action="logout" asp-controller="account">Çıxış</a>
+                        }
+                        else
+                        {
+
+                            <a asp-action="login" asp-controller="account">Log in</a>
+                            <a asp-action="register" asp-controller="account" id="overlay-book-btn">Qeydiyyat ol</a>
+                        }
+
                     </div>
                 </div>
             </div>

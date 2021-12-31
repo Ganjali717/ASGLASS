@@ -17,11 +17,18 @@
                             }
                         </ul>
                     </div>
-                    <!-- Price -->
-                  @*  <div class="single-block">
-                        <h3 class="sidebar-title">Qiymətə görə filtirlə</h3>
-                       
-                    </div>*@
+                  
+                    <!-- Shape -->
+                    <div class="single-block">
+                        <h3 class="sidebar-title">Kəsimə görə seçin</h3>
+                        <ul class="sidebar-menu--shop menu-type-2">
+                            @foreach (var shape in Model.Shapes)
+                            {
+                                <li><a asp-action="index" asp-controller="shop" asp-route-shapeId="@shape.Id">@shape.Name <span>(@shape.Products.Count())</span></a></li>
+
+                            }
+                        </ul>
+                    </div>
                     <!-- Size -->
                     <div class="single-block">
                         <h3 class="sidebar-title">Qalınlığa görə seçin</h3>
@@ -37,21 +44,22 @@
                     <div class="single-block">
                         <h3 class="sidebar-title">Rəngə görə seçin</h3>
                         <ul class="sidebar-menu--shop menu-type-2">
-                            @foreach (var item in Model.Colors)
+                            @foreach (var color in Model.Colors)
                             {
-                                <li><a asp-action="index" asp-controller="shop" asp-route-colorId="@item.Id">@item.Name <span>(@item.Product.Count())</span></a></li>
+                                <li><a asp-action="index" asp-controller="shop" asp-route-colorId="@color.Id">@color.Name <span>(@color.Product.Count())</span></a></li>
 
                             }
                         </ul>
                     </div>
+
                 </div>
             </div>
             <div class="shop-right col-9">
                 <div class="shop-toolbar">
                     <div class="row">
                         <div class="toolbar-item col-3">
-                            <span>Show:  </span>
-                            <select class="form-control nice-select sort-select">
+                            <span>Göstər:  </span>
+                            <select class="form-control nice-select sort-select" name="pages">
                                 <option value="" selected="selected">3</option>
                                 <option value="">9</option>
                                 <option value="">5</option>

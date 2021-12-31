@@ -11,5 +11,7 @@ namespace ASGlass.ViewModels
         public Product Product { get; set; }
 
         public Comment comment { get; set; }
+
+        public List<Comment> Komentler { get; set; }
     }
 }

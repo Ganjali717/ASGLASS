@@ -13,5 +13,6 @@ namespace ASGlass.ViewModels
         public List<Color> Colors { get; set; }
         public List<Thickness> Thicknesses { get; set; }
         public List<Corner> Corners { get; set; }
+        public List<Shape> Shapes { get; set; }
     }
 }

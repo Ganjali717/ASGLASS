@@ -63,7 +63,8 @@ namespace ASGlass.Controllers
                 Categories = _context.Categories.Include(x => x.ProductCategories).ThenInclude(x => x.Product).ToList(),
                 Colors = _context.Colors.Include(x => x.Product).ToList(),
                 Thicknesses = _context.Thicknesses.Include(x => x.Products).ToList(),
-                Products = PagenatedList<Product>.Create(query.Include(x => x.ProductImages), 6, page)
+                Shapes = _context.Shapes.Include(x => x.Products).ToList(),
+                Products = PagenatedList<Product>.Create(query.Include(x => x.ProductImages), 4, page)
             };
             return View(shopVM);
         }
@@ -73,7 +74,8 @@ namespace ASGlass.Controllers
             var product = _context.Products.ToList();
             DetailViewModel detailVM = new DetailViewModel()
             {
-                Product = _context.Products.Include(x => x.ProductImages).Include(x => x.Shape).Include(x => x.Thickness).Include(x => x.Polish).Include(x => x.Corner).Include(x => x.Colors).FirstOrDefault(x => x.Id == id)
+                Product = _context.Products.Include(x => x.ProductImages).Include(x => x.Shape).Include(x => x.Thickness).Include(x => x.Polish).Include(x => x.Corner).Include(x => x.Colors).FirstOrDefault(x => x.Id == id),
+                Komentler = _context.Comments.ToList()
             };
 
             if (id < 0 || id > product.Max(x => x.Id))
