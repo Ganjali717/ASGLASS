@@ -68,7 +68,12 @@ namespace ASGlass.Areas.Manage.Controllers
 
             if (admin == null)
             {
-                ModelState.AddModelError("", "istifadeci adi ve ya sifre yanlisdir!");
+                ModelState.AddModelError(loginVM.UserName, "istifadeci adi ve ya sifre yanlisdir!");
+            }
+
+            if(loginVM.Password == null)
+            {
+                return View();
             }
 
             var result = await _signInManager.PasswordSignInAsync(admin, loginVM.Password, loginVM.IsPersistent, false);
@@ -76,7 +81,7 @@ namespace ASGlass.Areas.Manage.Controllers
 
             if (!result.Succeeded)
             {
-                ModelState.AddModelError("", "istifadeci adi ve ya sifre yanlisdir!");
+                ModelState.AddModelError(loginVM.Password, "istifadeci adi ve ya sifre yanlisdir!");
             }
 
             return RedirectToAction("index", "dashboard");
