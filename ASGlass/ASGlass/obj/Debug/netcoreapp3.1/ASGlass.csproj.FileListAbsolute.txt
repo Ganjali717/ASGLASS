@@ -400,3 +400,4 @@ C:\Users\LENOVO\OneDrive\Desktop\ASGLASS\ASGlass\ASGlass\obj\Debug\netcoreapp3.1
 C:\Users\LENOVO\OneDrive\Desktop\ASGLASS\ASGlass\ASGlass\obj\Debug\netcoreapp3.1\Razor\Views\Account\ResetPassword.cshtml.g.cs
 C:\Users\LENOVO\OneDrive\Desktop\ASGLASS\ASGlass\ASGlass\obj\Debug\netcoreapp3.1\ASGlass.csproj.AssemblyReference.cache
 C:\Users\LENOVO\OneDrive\Desktop\ASGLASS\ASGlass\ASGlass\obj\Debug\netcoreapp3.1\Razor\Views\Error\Index.cshtml.g.cs
+C:\Users\LENOVO\OneDrive\Desktop\ASGLASS\ASGlass\ASGlass\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Account\Profile.cshtml.g.cs

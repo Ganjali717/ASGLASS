@@ -1,0 +1,62 @@
+﻿@model ProfileViewModel
+
+
+<div class="container-fluid">
+    <h2>Profiliniz</h2>
+    <br />
+    <form method="post" enctype="multipart/form-data">
+
+        <div class="column mb-50">
+            <div class="form-group">
+                <label asp-for="@Model.appUser.FullName">Ad və Soyad:</label>
+                <input asp-for="@Model.appUser.FullName" class="form-control" placeholder="Area">
+                <span class="text-danger" asp-validation-for="@Model.appUser.FullName"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="@Model.appUser.UserName">İstifadəçi adı:</label>
+                <input asp-for="@Model.appUser.UserName" class="form-control" placeholder="Username">
+                <span class="text-danger" asp-validation-for="@Model.appUser.UserName"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="@Model.appUser.Email">Email adresi:</label>
+                <input asp-for="@Model.appUser.Email" class="form-control" placeholder="Email">
+                <span class="text-danger" asp-validation-for="@Model.appUser.Email"></span>
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <fieldset style="width:100%;">
+            <h2>Şifrənizi dəyişin</h2>
+            <br />
+            <div class="column">
+                <div class="form-group">
+                    <label asp-for="OldPassword">Hazırki şifrə:</label>
+                    <br />
+                    <input type="password" asp-for="OldPassword" class="form-control">
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label asp-for="NewPassword">Yeni şifrə:</label>
+                    <br />
+                    <input type="password" asp-for="NewPassword" class="form-control">
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label asp-for="ConfirmPassword">Yeni şifrəni təkrarlıyın:</label>
+                    <br />
+                    <input type="password" asp-for="ConfirmPassword" class="form-control">
+                </div>
+            </div>
+        </fieldset>
+        <br />
+        <div class="btn-wrapper">
+            <button type="submit" class="btn btn-warning text-uppercase w-100">Yenilə</button>
+        </div>
+    </form>
+
+</div>
