@@ -50,10 +50,6 @@
               "target": "Package",
               "version": "[4.4.1, )"
             },
-            "Microsoft.AspNet.WebPages.WebData": {
-              "target": "Package",
-              "version": "[3.2.7, )"
-            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.21, )"

@@ -25,7 +25,17 @@ namespace ASGlass.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var value = HttpContext.Request.Cookies["Products"];
+
+            if (value != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("index", "card");
+            }
+
         }
 
         [HttpPost]
