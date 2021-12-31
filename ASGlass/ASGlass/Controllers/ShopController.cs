@@ -70,12 +70,17 @@ namespace ASGlass.Controllers
 
         public IActionResult Detail(int id)
         {
+            var product = _context.Products.ToList();
             DetailViewModel detailVM = new DetailViewModel()
             {
                 Product = _context.Products.Include(x => x.ProductImages).Include(x => x.Shape).Include(x => x.Thickness).Include(x => x.Polish).Include(x => x.Corner).Include(x => x.Colors).FirstOrDefault(x => x.Id == id)
             };
 
-           
+            if (id < 0 || id > product.Max(x => x.Id))
+            {
+                return RedirectToAction("index", "error");
+            }
+
             return View(detailVM);
         }
 

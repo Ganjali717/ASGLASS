@@ -39,11 +39,11 @@
                     <br>
                     @if (Model.Product.DiscountPrice == null)
                     {
-                        <p>@Model.Product.Price ₼</p>
+                        <p> <b>Qiymət:</b> @Model.Product.Price ₼</p>
                     }
                     else
                     {
-                        <p>@Model.Product.DiscountPrice ₼ <span style="text-decoration:line-through;">@Model.Product.Price ₼</span></p>
+                        <p> <b>Endirimli Qiymət:</b>  @Model.Product.DiscountPrice ₼ <span style="text-decoration:line-through;">@Model.Product.Price ₼</span></p>
 
                     }
 
@@ -56,7 +56,7 @@
                     }
                     <p><b>Ölçü: </b> @Model.Product.Uzunluq sm x @Model.Product.En sm</p>
                     <p><b>Rəng:</b> @Model.Product.Colors.Name </p>
-                    <p><b>Mərkəzdə Dəlik: </b></p>
+                    <p><b>Mərkəzdə Dəlik:</b> Yoxdur</p>
 
                     <br />
                     <span>Say:</span>
@@ -70,8 +70,7 @@
                     <a href="" class="accdetail-btn">SƏBƏTƏ AT</a>
                     <br>
                     <p><b>Aviability:</b> @(Model.Product.Count > 0 ? "Bu mehsuldan " + Model.Product.Count + " eded var":"Bu mehsuldan ambarda yoxdur")</p>
-                    <br>
-                    <a href="">Need to buy bulk?</a>
+                    
                 </div>
             </div>
         </div>

@@ -13854,13 +13854,13 @@ body {
         padding: 10px 25px; }
         #shop .container .row .shop-right .shop-toolbar .row {
           display: flex;
-          justify-content: center;
+          justify-content: space-between;
           align-items: center;
           flex-direction: row;
           align-items: center; }
           #shop .container .row .shop-right .shop-toolbar .row .toolbar-item {
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center;
             flex-direction: row;
             justify-content: space-between; }

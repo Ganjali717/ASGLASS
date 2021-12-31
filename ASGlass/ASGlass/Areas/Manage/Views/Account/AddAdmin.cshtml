@@ -6,32 +6,33 @@
 }
 
 
-<div class="content mt-5">
-    <h1>Add Admin</h1>
+<div class="container-fluid mt-5">
+    <h1>Admin Əlavə Et</h1>
+    <br />
     <div class="col-12">
         <form method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <label asp-for="FullName">FullName</label>
+                <label asp-for="FullName">Ad və Soyad</label>
                 <input asp-for="FullName" class="form-control" placeholder="FullName">
                 <span class="text-danger" asp-validation-for="FullName"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UserName">UserName</label>
+                <label asp-for="UserName">İstifadəçi Adı</label>
                 <input asp-for="UserName" class="form-control" placeholder="UserName">
                 <span class="text-danger" asp-validation-for="UserName"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Email">Email</label>
+                <label asp-for="Email">E-poçt</label>
                 <input asp-for="Email" class="form-control" placeholder="Email">
                 <span class="text-danger" asp-validation-for="Email"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Password">Password</label>
+                <label asp-for="Password">Şifrə</label>
                 <input asp-for="Password" class="form-control" placeholder="Password">
                 <span class="text-danger" asp-validation-for="Password"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ConfirmPassword">Password</label>
+                <label asp-for="ConfirmPassword">Şifrəni yebidən qeyd edin</label>
                 <input asp-for="ConfirmPassword" class="form-control" placeholder="ConfirmPassword">
                 <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
             </div>
