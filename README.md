@@ -1,2 +1,8 @@
 # ASGLASS
-Online "ASGlass" glass and mirror shopping template . 
+
+*************************************************************
+
+Full responsive "ASGLASS" Glass and Mirror shopping template. 
+
+*************************************************************
+
