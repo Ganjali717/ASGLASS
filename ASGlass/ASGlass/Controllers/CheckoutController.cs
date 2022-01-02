@@ -8,6 +8,8 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace ASGlass.Controllers
@@ -81,6 +83,29 @@ namespace ASGlass.Controllers
 
                         }
 
+                        SmtpClient smtp = new SmtpClient();
+
+                        var credential = new NetworkCredential
+                        {
+                            UserName = "anar.aliyev717@gmail.com",
+                            Password = "genceli717"
+                        };
+                        smtp.Credentials = credential;
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.Port = 587;
+                        smtp.EnableSsl = true;
+
+
+                        var message = new MailMessage();
+                        message.From = new MailAddress("anar.aliyev717@gmail.com");
+                        message.To.Add(new MailAddress(orders.Email));
+                        message.Subject = "Sifaris kodunuz";
+                        message.Body = "Sifaris kodunuz: " + Convert.ToString(orders.OrderNumber);
+                        message.IsBodyHtml = true;
+
+                        await smtp.SendMailAsync(message);
+
+
                         _context.Orders.Add(orders);
                     }
                 }
@@ -118,12 +143,36 @@ namespace ASGlass.Controllers
 
                         _context.Products.Remove(product);
                     }
+
+                     SmtpClient smtp = new SmtpClient();
+
+                    /*var credential = new NetworkCredential
+                    {
+                        UserName = "anar.aliyev717@gmail.com",
+                        Password = "genceli717"
+                    };*/
+                    smtp.Credentials = CredentialCache.DefaultNetworkCredentials;
+                    smtp.Host = "smtp.gmail.com";
+                        smtp.Port = 587;
+                        smtp.EnableSsl = true;
+                    
+
+                    var message = new MailMessage();
+                    message.From = new MailAddress("anar.aliyev717@gmail.com");
+                    message.To.Add(new MailAddress(orders.Email));
+                    message.Subject = "Sifaris kodunuz";
+                    message.Body = Convert.ToString(orders.OrderNumber);
+                    message.IsBodyHtml = true;
+
+                   await smtp.SendMailAsync(message);
+
                     _context.Orders.Add(orders);
                 }
             }
 
-            
            
+
+
             _context.SaveChanges();
             return Redirect(HttpContext.Request.Headers["Referer"].ToString());
         }
