@@ -146,12 +146,12 @@ namespace ASGlass.Controllers
 
                      SmtpClient smtp = new SmtpClient();
 
-                    /*var credential = new NetworkCredential
+                    var credential = new NetworkCredential
                     {
                         UserName = "anar.aliyev717@gmail.com",
                         Password = "genceli717"
-                    };*/
-                    smtp.Credentials = CredentialCache.DefaultNetworkCredentials;
+                    };
+                    smtp.Credentials = credential;
                     smtp.Host = "smtp.gmail.com";
                         smtp.Port = 587;
                         smtp.EnableSsl = true;

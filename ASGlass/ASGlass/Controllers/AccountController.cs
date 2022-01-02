@@ -237,26 +237,26 @@ namespace ASGlass.Controllers
                 return RedirectToAction(nameof(ForgotPasswordConfirmation));
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
             var callback = Url.Action(nameof(ResetPassword), "Account", new { token, email = user.Email }, Request.Scheme);
+            SmtpClient smtp = new SmtpClient();
+
+            var credential = new NetworkCredential
+            {
+                UserName = "anar.aliyev717@gmail.com",
+                Password = "genceli717"
+            };
+            smtp.Credentials = credential;
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
+
             var message = new MailMessage();
-            message.To.Add(new MailAddress("anar.aliyev717@gmail.com"));
-            message.From = new MailAddress(user.Email);
+            message.From = new MailAddress("anar.aliyev717@gmail.com");
+            message.To.Add(new MailAddress(user.Email));
             message.Subject = "Reset Password Token";
             message.Body = callback;
             message.IsBodyHtml = true;
-
-            using (var smtp = new SmtpClient())
-            {
-                var credential = new NetworkCredential
-                {
-                    UserName = "anar.aliyev717@gmail.com",
-                    Password = "genceli717"
-                };
-                smtp.Credentials = credential;
-                smtp.Host = "smtp.gmail.com";
-                smtp.Port = 587;
-                smtp.EnableSsl = true;
-                await smtp.SendMailAsync(message);
-            }
+            await smtp.SendMailAsync(message);
+            
 
             return RedirectToAction(nameof(ForgotPasswordConfirmation));
         }
