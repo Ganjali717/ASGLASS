@@ -30,12 +30,12 @@
 
                                         <label><b>Uzunlugu Qeyd Edin:</b></label>
                                         <br /><br />
-                                        <input type="number" name="uzunluq" placeholder="Mesel ucun: 240 sm = (2 metr 40 sm)" class="numberinput" asp-for="Uzunluq" required />
+                                        <input type="number" name="uzunluq" placeholder="Mesel ucun: 240 sm = (2 metr 40 sm)" class="form-control shadow-none numberinput" asp-for="Uzunluq" required />
                                         <span asp-validation-for="Uzunluq"></span>
                                         <br /><br />
                                         <label><b>Enini Qeyd Edin:</b></label>
                                         <br /><br />
-                                        <input type="number" name="en" placeholder="Mesel ucun: 18 sm = (0 metr 18 sm)" class="numberinput" asp-for="En" required />
+                                        <input type="number" name="en" placeholder="Mesel ucun: 18 sm = (0 metr 18 sm)" class="form-control shadow-none numberinput" asp-for="En" required />
                                         <span asp-validation-for="En"></span>
                                         <br /><br />
                                         <span class="text-danger input-error d-none">Xanalari doldurun!</span>
@@ -67,10 +67,9 @@
                                 <p><b>Rəng</b></p>
 
                                 <label asp-for="ColorId">Şüşə rəngini seçin:</label>
-                                <select class="form-select form-select-lg" asp-for="ColorId" id="ColorId" asp-items="@(new SelectList(ViewBag.Colors,"Id","Name"))" required>
-                                    <option selected>Rəng seçin</option>
+                                <select class="form-select form-select-lg shadow-none" asp-for="ColorId" id="ColorId" asp-items="@(new SelectList(ViewBag.Colors,"Id","Name"))" required>
+                                  
                                 </select>
-                                <span class="text-danger" asp-validation-for="ColorId"></span>
                             </div>
                         </div>
                         <br>
@@ -79,9 +78,10 @@
                                 <p><b>Qalınlıq</b></p>
 
                                 <label asp-for="ThicknessId">Şüşə qalınlığını seçin:</label>
-                                <select class="form-select form-select-lg" asp-for="ThicknessId" id="ThicknessId" asp-items="@(new SelectList(ViewBag.Thicknesses,"Id","Size"))">
-                                    <option selected>Qalınlıq seçin</option>
+                                <select class="form-select form-select-lg shadow-none" asp-for="ThicknessId" id="ThicknessId" asp-items="@(new SelectList(ViewBag.Thicknesses,"Id","Size"))" required>
+                                    
                                 </select>
+
                             </div>
                         </div>
                         <br>
@@ -90,7 +90,7 @@
                                 <p><b>Cilalanma</b></p>
 
                                 <label asp-for="PolishId">Cilalanma növünü seçin:</label>
-                                <select class="form-select form-select-lg" asp-for="PolishId" id="PolishId" asp-items="@(new SelectList(ViewBag.Polishes,"Id","Name"))">
+                                <select class="form-select form-select-lg shadow-none" asp-for="PolishId" id="PolishId" asp-items="@(new SelectList(ViewBag.Polishes,"Id","Name"))">
                                     <option selected>Cilalanma seçin</option>
                                 </select>
                             </div>
@@ -100,7 +100,7 @@
                             <div class="column">
                                 <p><b>Künc</b></p>
                                 <label asp-for="CornerId">Şüşənin künc növünü seçin:</label>
-                                <select class="form-select form-select-lg" asp-for="CornerId" id="CornerId" asp-items="@(new SelectList(ViewBag.Corners,"Id","Name"))">
+                                <select class="form-select form-select-lg shadow-none" asp-for="CornerId" id="CornerId" asp-items="@(new SelectList(ViewBag.Corners,"Id","Name"))">
                                     <option selected>Künc növü</option>
                                 </select>
                             </div>
@@ -119,9 +119,9 @@
                                             <div class="center-hole-right col-7">
                                                 <label asp-for="Diametr">Ölçü:</label>
                                                 <br /><br />
-                                                <input class="numberinput p-2" value="0" asp-for="Diametr" type="number" name="diametr"  max="70" placeholder="Diametri qeyd edin zəhmət olmasa"/>
+                                                <input class="numberinput p-2" value="0" asp-for="Diametr" type="number" name="diametr" min="0"  max="70" placeholder="Diametri qeyd edin zəhmət olmasa"/>
                                                 <br><br /><br />
-                                                <p>Mərkəzdə dəlik yalnız 4 mm dən 70 mm dək ola bilər!</p>
+                                                <p>Mərkəzdə dəlik yalnız 1 mm dən 70 mm dək ola bilər!</p>
                                             </div>
                                         </div>
                                     </div>

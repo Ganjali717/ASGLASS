@@ -5,13 +5,13 @@
         var url = $(this).attr("href");
 
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Əminsiniz?',
+            text: "Sildikdən sonra fayli geri qaytarmaq olmayacaq!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Bəli, Sil!'
         }).then((result) => {
 
             if (result.isConfirmed)
@@ -27,7 +27,7 @@
                             console.log(data.status)
                             Swal.fire(
                                 'Error!',
-                                'Your file has not been deleted!',
+                                'Sizin fayl silinmədi!',
                                 'error'
                             )
                         }

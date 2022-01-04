@@ -23,7 +23,7 @@
                     <tr>
                         <th scope="row">@order</th>
                         <td>@Model.Title.Substring(0,130)</td>
-                        <td><img src="~/assets/images/technica/@Model.Image" style="max-width:100px" alt="Alternate Text" /></td>
+                        <td><img src="~/uploads/aboutus/@Model.Image" style="max-width:100px" alt="Alternate Text" /></td>
                         <td>
                             <a asp-action="edit" asp-route-id="@Model.Id" class="btn btn-warning">Düzəliş Et</a>
                             <a asp-action="deletefetch" asp-route-id="@Model.Id" class="btn btn-danger btn-item-delete">Sil</a>

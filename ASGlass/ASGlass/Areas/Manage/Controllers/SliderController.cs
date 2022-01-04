@@ -1,9 +1,11 @@
 ﻿using ASGlass.DAL;
 using ASGlass.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,10 +17,12 @@ namespace ASGlass.Areas.Manage.Controllers
     public class SliderController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IWebHostEnvironment _env;
 
-        public SliderController(AppDbContext context)
+        public SliderController(AppDbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         public IActionResult Index()
@@ -36,37 +40,36 @@ namespace ASGlass.Areas.Manage.Controllers
         [HttpPost]
         public IActionResult Create(Slider slider)
         {
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
 
-         /*   if (slider.ImageFile != null)
+            if (slider.PosterFile != null)
             {
 
-                if (slider.ImageFile.ContentType != "image/png" && slider.ImageFile.ContentType != "image/jpeg")
+                if (slider.PosterFile.ContentType != "image/png" && slider.PosterFile.ContentType != "image/jpeg")
                 {
-                    ModelState.AddModelError("ImageFile", "File type can be only jpeg,jpg or png!");
+                    ModelState.AddModelError("PosterFile", "File type can be only jpeg,jpg or png!");
                     return View();
                 }
 
-                if (slider.ImageFile.Length > 2097152)
+                if (slider.PosterFile.Length > 222097152)
                 {
-                    ModelState.AddModelError("ImageFile", "File size can not be more than 2MB!");
+                    ModelState.AddModelError("Posterfile", "File size can not be more than 2MB!");
                     return View();
                 }
 
-                //string newFileName = (CryptoHelper.Crypto.HashPassword(DateTime.Now.ToLongTimeString() + slider.ImageFile.FileName) + slider.ImageFile.FileName).Replace("/", "");
-                string newFileName = Guid.NewGuid().ToString() + slider.ImageFile.FileName;
+                string newFileName = Guid.NewGuid().ToString() + slider.PosterFile.FileName;
                 string path = Path.Combine(_env.WebRootPath, "uploads/slider", newFileName);
 
                 using (FileStream stream = new FileStream(path, FileMode.Create))
                 {
-                    slider.ImageFile.CopyTo(stream);
+                    slider.PosterFile.CopyTo(stream);
                 }
 
                 slider.Image = newFileName;
-            }*/
+            }
+            else
+            {
+                ModelState.AddModelError("PosterFile", "Poster file is required");
+            }
 
 
             _context.Sliders.Add(slider);
@@ -94,27 +97,27 @@ namespace ASGlass.Areas.Manage.Controllers
 
             if (existSlider == null) return NotFound();
 
-          /*  string newFileName = null;
-            if (slider.ImageFile != null)
+            string newFileName = null;
+            if (slider.PosterFile != null)
             {
-                if (slider.ImageFile.ContentType != "image/png" && slider.ImageFile.ContentType != "image/jpeg")
+                if (slider.PosterFile.ContentType != "image/png" && slider.PosterFile.ContentType != "image/jpeg")
                 {
                     ModelState.AddModelError("ImageFile", "File type can be only jpeg,jpg or png!");
                     return View();
                 }
 
-                if (slider.ImageFile.Length > 2097152)
+                if (slider.PosterFile.Length > 222097152)
                 {
                     ModelState.AddModelError("ImageFile", "File size can not be more than 2MB!");
                     return View();
                 }
 
-                newFileName = Guid.NewGuid().ToString() + slider.ImageFile.FileName;
+                newFileName = Guid.NewGuid().ToString() + slider.PosterFile.FileName;
                 string path = Path.Combine(_env.WebRootPath, "uploads/slider", newFileName);
 
                 using (FileStream stream = new FileStream(path, FileMode.Create))
                 {
-                    slider.ImageFile.CopyTo(stream);
+                    slider.PosterFile.CopyTo(stream);
                 }
             }
 
@@ -131,7 +134,7 @@ namespace ASGlass.Areas.Manage.Controllers
                 }
 
                 existSlider.Image = newFileName;
-            }*/
+            }
 
             existSlider.Title = slider.Title;
             existSlider.SubTitle = slider.SubTitle;

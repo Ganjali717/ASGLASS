@@ -33,13 +33,7 @@ namespace ASGlass.Controllers
 
         public IActionResult Customize()
         {
-            ViewBag.Categories = _context.Categories.ToList();
-            ViewBag.Shapes = _context.Shapes.ToList();
             ViewBag.Colors = _context.Colors.Take(3).ToList();
-            ViewBag.Thicknesses = _context.Thicknesses.ToList();
-            ViewBag.Polishes = _context.Polishes.ToList();
-            ViewBag.Corners = _context.Corners.ToList();
-
 
             return View();
         }
@@ -53,8 +47,7 @@ namespace ASGlass.Controllers
             product.Uzunluq = Convert.ToDouble(HttpContext.Request.Form["uzunluq"]);
             product.En = Convert.ToDouble(HttpContext.Request.Form["en"]);
             product.ShapeId = shapeid;
-
-            if (!_context.Colors.Any(x => x.Id == product.ColorId)) ModelState.AddModelError("ColorsId", "Colors not found!");
+            product.Name = "Fərqli Kəsim Güzgü";
 
             if (product.ShapeId == 6 && product.ColorId == 1)
             {
@@ -157,7 +150,7 @@ namespace ASGlass.Controllers
                 if (cartVm == null)
                 {
                     cartVm = new CartViewModel();
-                    cartVm.Name = "Fərqli Kəsim Güzgü";
+                    cartVm.Name = product.Name;
                     cartVm.Image = shapeid == 1 ? "rectangle-customize.webp" : (shapeid == 2 ? "square-customize.webp" : (shapeid == 3 ? "oval-customize.webp" : "round-customize.webp"));
                     cartVm.ProductId = null;
                     cartVm.Uzunluq = product.Uzunluq;

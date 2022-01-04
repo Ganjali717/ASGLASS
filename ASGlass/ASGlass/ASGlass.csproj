@@ -1953,6 +1953,8 @@
   <ItemGroup>
     <Folder Include="wwwroot\assets\images\decors\" />
     <Folder Include="wwwroot\assets\images\employees\" />
+    <Folder Include="wwwroot\uploads\aboutus\" />
+    <Folder Include="wwwroot\uploads\slider\" />
     <Folder Include="wwwroot\uploads\products\" />
   </ItemGroup>
 

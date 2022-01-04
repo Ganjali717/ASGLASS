@@ -29,13 +29,13 @@ namespace ASGlass.Controllers
         {
             var value = HttpContext.Request.Cookies["Products"];
 
-            if (value != null)
+            if (string.IsNullOrWhiteSpace(value) || value == "[]")
             {
-                return View();
+                return RedirectToAction("index", "card");
             }
             else
             {
-                return RedirectToAction("index", "card");
+                return View();
             }
 
         }
@@ -95,12 +95,13 @@ namespace ASGlass.Controllers
                         smtp.Port = 587;
                         smtp.EnableSsl = true;
 
+                        string callback = "https://localhost:44393/service/orderstatus";
 
                         var message = new MailMessage();
                         message.From = new MailAddress("anar.aliyev717@gmail.com");
                         message.To.Add(new MailAddress(orders.Email));
                         message.Subject = "Sifaris kodunuz";
-                        message.Body = "Sifaris kodunuz: " + Convert.ToString(orders.OrderNumber);
+                        message.Body = "Sifaris kodunuz: " + Convert.ToString(orders.OrderNumber) + "  Sifariwinizi buradan yoxlaya bilersiniz: " + callback;
                         message.IsBodyHtml = true;
 
                         await smtp.SendMailAsync(message);
@@ -155,13 +156,15 @@ namespace ASGlass.Controllers
                     smtp.Host = "smtp.gmail.com";
                         smtp.Port = 587;
                         smtp.EnableSsl = true;
-                    
+
+                    string callback = "https://localhost:44393/service/orderstatus";
+
 
                     var message = new MailMessage();
                     message.From = new MailAddress("anar.aliyev717@gmail.com");
                     message.To.Add(new MailAddress(orders.Email));
                     message.Subject = "Sifaris kodunuz";
-                    message.Body = Convert.ToString(orders.OrderNumber);
+                    message.Body = "Sifaris kodunuz: " + Convert.ToString(orders.OrderNumber) + "     Sifariwinizi buradan yoxlaya bilersiniz: " + callback;
                     message.IsBodyHtml = true;
 
                    await smtp.SendMailAsync(message);

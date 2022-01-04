@@ -54,11 +54,7 @@ namespace ASGlass.Controllers
             product.En = Convert.ToDouble(HttpContext.Request.Form["en"]);
             product.ShapeId = shapeid;
             product.Diametr = Convert.ToDouble(HttpContext.Request.Form["diametr"]);
-
-            if (product.Uzunluq == null) ModelState.AddModelError("Uzunluq", "Diametri qeyd eliyin");
-            if (product.En == null) ModelState.AddModelError("En", "En qeyd eliyin!");
-            if (product.ColorId == null) ModelState.AddModelError("ColorId", "Shape qeyd eliyin");
-            if (product.ThicknessId == null) ModelState.AddModelError("ThicknessId", "Thickness qeyd eliyin");
+            product.Name = "Fərqli Kəsim Şüşə";
 
 
             if (product.ThicknessId == 1 && product.ColorId == 1)
@@ -202,7 +198,7 @@ namespace ASGlass.Controllers
                 if (cartVm == null)
                 {
                     cartVm = new CartViewModel();
-                    cartVm.Name = "Fərqli Kəsim Şüşə";
+                    cartVm.Name = product.Name;
                     cartVm.Image = shapeid == 1 ? "rectangle-customize.webp" : (shapeid == 2 ? "square-customize.webp" : (shapeid == 3 ? "oval-customize.webp" : "round-customize.webp"));
                     cartVm.ProductId = null;
                     cartVm.Uzunluq = product.Uzunluq;
@@ -210,11 +206,12 @@ namespace ASGlass.Controllers
                     cartVm.Price = Math.Ceiling(product.Price);
                     cartVm.Shape = shapeid == 1 ? "Düzbucaq" : (shapeid == 2 ? "Kvadrat" : (shapeid == 3 ? "Oval" : "Yumru"));
                     cartVm.Color = product.ColorId == 1 ? "Ağ" : (product.ColorId == 2 ? "Qara" : (product.ColorId == 3 ? "Qəhvəyi" : "Sətin"));
-                    cartVm.Polish = product.PolishId == 1 ? "Faset" : "Radaj";
+                    cartVm.Polish = product.PolishId == 1 ? "Faset" : (product.PolishId == 2 ? "Radaj" : "");
                     cartVm.Thickness = product.ThicknessId == 1 ? "4" : (product.ThicknessId == 2 ? "6" : (product.ThicknessId == 3 ? "8" : "10"));
-                    cartVm.Corner = product.CornerId == 1 ? "Yumru" : "Düz";
+                    cartVm.Corner = product.CornerId == 1 ? "Yumru" : (product.CornerId == 2 ? "Düz":"");
                     cartVm.IsAccessory = false;
                     cartVm.Diametr = product.Diametr;
+                    cartVm.Count = 1;
                     products.Add(cartVm);
 
                 }
@@ -231,16 +228,16 @@ namespace ASGlass.Controllers
                     {
                         AppUserId = member.Id,
                         ProductId = null,
-                        Name = "Fərqli Kəsim Şüşə",
+                        Name = product.Name,
                         Image = shapeid == 1 ? "rectangle-customize.webp" : (shapeid == 2 ? "square-customize.webp" : (shapeid == 3 ? "oval-customize.webp" : "round-customize.webp")),
                         Uzunluq = product.Uzunluq,
                         En = product.En,
                         Price = Math.Ceiling(product.Price),
                         Shape = shapeid == 1 ? "Düzbucaq" : (shapeid == 2 ? "Kvadrat" : (shapeid == 3 ? "Oval" : "Yumru")),
                         Color = product.ColorId == 1 ? "Ağ" : (product.ColorId == 2 ? "Qara" : (product.ColorId == 3 ? "Qəhvəyi" : "Sətin")),
-                        Polish = product.PolishId == 1 ? "Faset" : "Radaj",
+                        Polish = product.PolishId == 1 ? "Faset" : (product.PolishId == 2 ? "Radaj": ""),
                         Thickness = product.ThicknessId == 1 ? "4" : (product.ThicknessId == 2 ? "6" : (product.ThicknessId == 3 ? "8" : "10")),
-                        Corner = product.CornerId == 1 ? "Yumru" : "Düz",
+                        Corner = product.CornerId == 1 ? "Yumru" : (product.CornerId == 2 ? "Düz": ""),
                         IsAccessory = false,
                         Diametr = product.Diametr,
                         Count = 1
