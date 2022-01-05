@@ -25,18 +25,23 @@ namespace ASGlass.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var value = HttpContext.Request.Cookies["Products"];
 
-            if (string.IsNullOrWhiteSpace(value) || value == "[]")
+            AppUser member = null;
+            if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("index", "card");
+                member = await _userManager.FindByNameAsync(User.Identity.Name);
             }
-            else
+            if(member == null)
             {
-                return View();
+                if (string.IsNullOrWhiteSpace(value) || value == "[]")
+                {
+                    return RedirectToAction("index", "card");
+                }
             }
+            return View();
 
         }
 
@@ -74,13 +79,20 @@ namespace ASGlass.Controllers
                             orders.CreatedAt = DateTime.UtcNow;
                             orders.Status = Models.Enums.OrderStatus.Pending;
                             orders.OrderNumber = random.Next(10000,90000);
+                            orders.Polish = item.Polish;
+                            orders.Corner = item.Corner;
+                            orders.Uzunluq = item.Uzunluq;
+                            orders.En = item.En;
+                            orders.Color = item.Color;
+                            orders.Count = item.Count;
+                            orders.Diametr = item.Diametr;
+                            orders.Thickness = item.Thickness;
                         }
 
                         if (item.ProductId != null)
                         {
                             Product product = _context.Products.FirstOrDefault(x => x.Id == item.ProductId);
                             _context.Products.Remove(product);
-
                         }
 
                         SmtpClient smtp = new SmtpClient();
@@ -124,14 +136,22 @@ namespace ASGlass.Controllers
                     {
                         orders.AppUserId = item.AppUserId;
                         orders.ProductId = item.ProductId != null ? item.ProductId:null;
-                        orders.FullName = HttpContext.Request.Form["fullname"].ToString();
-                        orders.Email = HttpContext.Request.Form["email"].ToString();
+                        orders.FullName = member.FullName;
+                        orders.Email = member.Email;
                         orders.ProductName = item.Name;
                         orders.Price = item.Price;
                         orders.ProductImage = item.Image;
                         orders.CreatedAt = DateTime.UtcNow;
                         orders.Status = Models.Enums.OrderStatus.Pending;
                         orders.OrderNumber = random.Next(10000, 90000);
+                        orders.Polish = item.Polish;
+                        orders.Corner = item.Corner;
+                        orders.Uzunluq = item.Uzunluq;
+                        orders.En = item.En;
+                        orders.Color = item.Color;
+                        orders.Count = item.Count;
+                        orders.Diametr = item.Diametr;
+                        orders.Thickness = item.Thickness;
                     }
 
                     _context.CartItems.Remove(item);
@@ -174,8 +194,6 @@ namespace ASGlass.Controllers
             }
 
            
-
-
             _context.SaveChanges();
             return Redirect(HttpContext.Request.Headers["Referer"].ToString());
         }

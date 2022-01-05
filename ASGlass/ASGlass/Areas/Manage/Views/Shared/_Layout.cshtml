@@ -284,7 +284,7 @@
                                
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">@User.Identity.Name</span>
-                                    <img class="img-profile rounded-circle" src="~/assets/images/logo/AsGlassLogo.png">
+                                    <img class="img-profile rounded-circle" src="~/assets/images/logo/asglasslogosu.png">
                                 </a>
                             }
 
@@ -292,15 +292,11 @@
                                  aria-labelledby="userDropdown">
                                 <a class="dropdown-item" asp-action="profile" asp-controller="account">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
+                                    Profiliniz
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" asp-action="index" asp-controller="setting">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item"  asp-action="logout" asp-controller="account">

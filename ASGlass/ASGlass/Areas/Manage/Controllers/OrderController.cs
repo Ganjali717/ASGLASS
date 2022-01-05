@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace ASGlass.Areas.Manage.Controllers
@@ -52,6 +54,62 @@ namespace ASGlass.Areas.Manage.Controllers
                 await _hubContext.Clients.Client(order.AppUser.ConnectionId).SendAsync("OrderAccepted");
             }
 
+            SmtpClient smtp = new SmtpClient();
+
+            var credential = new NetworkCredential
+            {
+                UserName = "anar.aliyev717@gmail.com",
+                Password = "genceli717"
+            };
+            smtp.Credentials = credential;
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
+
+
+            var message = new MailMessage();
+            message.From = new MailAddress("anar.aliyev717@gmail.com");
+            message.To.Add(new MailAddress(order.Email));
+            message.Subject = "Sifaris kodunuz";
+            message.Body = "Sizin " + Convert.ToString(order.OrderNumber) + " kodlu sifariwiniz qebul edilmiwdir yaxin zamanda sifariwiniz hazir olacaqdir. Elaqede qalin. Bizi secdiyiniz ucun size tesekkur edirik :)";
+            message.IsBodyHtml = true;
+
+            await smtp.SendMailAsync(message);
+
+            return RedirectToAction("index");
+        }
+
+        public async Task<IActionResult> Ready(int id)
+        {
+            Order order = _context.Orders.Include(x => x.Product).FirstOrDefault(x => x.Id == id);
+            if (order == null) return NotFound();
+
+            order.Status = Models.Enums.OrderStatus.Ready;
+            _context.SaveChanges();
+             
+
+            SmtpClient smtp = new SmtpClient();
+
+            var credential = new NetworkCredential
+            {
+                UserName = "anar.aliyev717@gmail.com",
+                Password = "genceli717"
+            };
+            smtp.Credentials = credential;
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
+
+
+            var message = new MailMessage();
+            message.From = new MailAddress("anar.aliyev717@gmail.com");
+            message.To.Add(new MailAddress(order.Email));
+            message.Subject = "Sifaris kodunuz";
+            message.Body = "Hormetli" + order.FullName + Convert.ToString(order.OrderNumber) + " kodlu sifariwiniz hazirdir";
+            message.IsBodyHtml = true;
+
+            await smtp.SendMailAsync(message);
+
             return RedirectToAction("index");
         }
 
@@ -66,6 +124,7 @@ namespace ASGlass.Areas.Manage.Controllers
             return RedirectToAction("index");
         }
 
+        [Authorize(Roles = "SuperAdmin")]
         public IActionResult DeleteFetch(int id)
         {
             Order order = _context.Orders.Include(x => x.Product).FirstOrDefault(x => x.Id == id);

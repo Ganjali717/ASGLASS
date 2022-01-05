@@ -11320,14 +11320,16 @@ header {
           color: #0A6AB7;
           cursor: pointer; }
         header #navbar .container .row .header-shop-cart .login-container {
-          position: absolute;
-          width: 300px;
-          background-color: white;
-          border-radius: 15px;
-          padding: 15px;
-          z-index: 1;
-          top: 80px;
-          display: none; }
+            position: absolute;
+            width: 300px;
+            background-color: white;
+            border-radius: 15px;
+            border: 2px solid #0A6AB7;
+            padding: 15px;
+            z-index: 1;
+            top: 80px;
+            display: none;
+        }
           header #navbar .container .row .header-shop-cart .login-container ul {
             display: flex;
             justify-content: center;
@@ -11782,7 +11784,7 @@ footer {
         width: 100%; } }
 
 body {
-    background-color: whitesmoke !important;
+    background-color:antiquewhite;
 }
   body #loading {
     position: fixed;

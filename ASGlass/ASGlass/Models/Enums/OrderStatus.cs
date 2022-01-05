@@ -9,6 +9,7 @@ namespace ASGlass.Models.Enums
     {
         Pending = 0,
         Accepted = 1,
-        Rejected = 2
+        Rejected = 2,
+        Ready = 3
     }
 }

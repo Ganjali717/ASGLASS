@@ -74,7 +74,7 @@ namespace ASGlass.Controllers
             var product = _context.Products.ToList();
             DetailViewModel detailVM = new DetailViewModel()
             {
-                Product = _context.Products.Include(x => x.ProductImages).Include(x => x.Shape).Include(x => x.Thickness).Include(x => x.Polish).Include(x => x.Corner).Include(x => x.Colors).FirstOrDefault(x => x.Id == id),
+                Product = _context.Products.Include(x => x.ProductImages).Include(x => x.Shape).Include(x => x.Thickness).Include(x => x.Polish).Include(x => x.Corner).Include(x => x.Colors).Include(x => x.Comments).FirstOrDefault(x => x.Id == id),
                 Komentler = _context.Comments.ToList()
             };
 

@@ -12,6 +12,7 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
+                <th scope="col">Sifariwin kodu</th>
                 <th scope="col">Ad və Soyad</th>
                 <th scope="col">Email</th>
                 <th scope="col">Tarix</th>
@@ -25,6 +26,7 @@
                 index++;
                 <tr>
                     <th scope="row">@index</th>
+                    <td>AS @order.OrderNumber</td>
                     <td>@order.FullName</td>
                     <td>@order.Email</td>
                     <td>@order.CreatedAt.AddHours(4).ToString("HH:mm dd MMM yyyy")</td>
@@ -36,7 +38,7 @@
                         </h5>
                     </td>
                     <td>
-                        <a asp-action="edit" asp-route-id="@order.Id" class="btn btn-warning">Düzəliş Et</a>
+                        <a asp-action="edit" asp-route-id="@order.Id" class="btn btn-warning">Ətraflı Bax</a>
                         <a asp-action="deletefetch" asp-route-id="@order.Id" class="btn btn-danger btn-item-delete">Sil</a>
                     </td>
                 </tr>

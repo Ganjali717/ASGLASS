@@ -33,9 +33,7 @@
                 <div class="accdetail-head-right col-6">
                     <h3>@Model.Product.Name</h3>
                     <br>
-                    <small>11 Reviews 6 Questions \ 6 Answers</small>
-                    <br>
-                    <p>SKU: IC80HV-20GR</p>
+                    <small>Məhsul haqqında @Model.Product.Comments.Count() rəy var</small>
                     <br>
                     @if (Model.Product.DiscountPrice == null)
                     {
@@ -54,23 +52,21 @@
                         <p><b>Kəsim:</b> @Model.Product.Shape.Name</p>
 
                     }
-                    <p><b>Ölçü: </b> @Model.Product.Uzunluq sm x @Model.Product.En sm</p>
-                    <p><b>Rəng:</b> @Model.Product.Colors.Name </p>
-                    <p><b>Mərkəzdə Dəlik:</b> Yoxdur</p>
+                    @if (Model.Product.IsAccessory == false)
+                    {
+                        <p><b>Ölçü: </b> @Model.Product.Uzunluq sm x @Model.Product.En sm</p>
+                        <p><b>Rəng:</b> @Model.Product.Colors.Name </p>
+                        <p><b>Mərkəzdə Dəlik:</b> Yoxdur</p>
+                    }
+
 
                     <br />
-                    <span>Say:</span>
-                    <select name="" id="acccount">
-                        @for (int i = 1; i <= Model.Product.Count; i++)
-                        {
-                            <option value="">@i</option>
-                        }
-                    </select>
+                  
                     <br>
-                    <a href="" class="accdetail-btn">SƏBƏTƏ AT</a>
+                    <a asp-action="addtocart" asp-controller="shop" asp-route-id="@Model.Product.Id" class="accdetail-btn">SƏBƏTƏ AT</a>
                     <br>
                     <p><b>Aviability:</b> @(Model.Product.Count > 0 ? "Bu mehsuldan " + Model.Product.Count + " eded var":"Bu mehsuldan ambarda yoxdur")</p>
-                    
+
                 </div>
             </div>
         </div>
@@ -80,15 +76,13 @@
     <section id="accdetail-body">
         <div class="container">
             <div class="column">
-                <h4>Product Description</h4>
+                <h4>Məhsul haqqında məlumat</h4>
                 <br>
-                <b>Professional-Grade Decorative Glass Glue for Construction Projects</b>
-                <br><br>
                 <p>
                     @Model.Product.Desc
                 </p>
                 <br>
-                <b>Features: </b>
+                <b>Xüsusiyyətləri: </b>
                 <br>
                 <ul>
                     <li>100% safe</li>

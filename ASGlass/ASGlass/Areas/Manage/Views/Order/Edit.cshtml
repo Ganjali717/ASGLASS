@@ -5,30 +5,39 @@
 
 
 <div class="container-fluid">
-    <h1>Edit</h1>
+    <h1>Sifaris Etrafli</h1>
     <div class="card" style="width: 40%; margin:0 auto;">
         <div class="card-body">
             <p class="card-text">
-                Full Name - @Model.FullName
+                <b> Ad ve Soyad:</b> @Model.FullName
             </p>
             <p class="card-text">
-                Email - @Model.Email
+                <b>E-poct unvani:</b>  @Model.Email
             </p>
             <p class="card-text">
-                Date - @Model.CreatedAt.AddHours(4).ToString("HH:mm dd MMM yyyy")
+                <b> Vaxt:</b> @Model.CreatedAt.AddHours(4).ToString("HH:mm dd MMM yyyy")
             </p>
             <p class="card-text">
-                Status - @Model.Status
+                <b>Status:</b> <span class="badge badge-@(Model.Status== OrderStatus.Accepted?"success":Model.Status== OrderStatus.Rejected?"danger":"info")">
+                @(Model.Status== OrderStatus.Accepted?"Qəbul olunub": Model.Status== OrderStatus.Rejected?"Rədd edilib":"Gözləmədədir")
+                                                        </span>
             </p>
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item"> <b>Mehsulun adi: </b> @Model.ProductName</li>
-            <li class="list-group-item"> <b>Şəkil: </b> <img src="~/uploads/products/@Model.ProductImage" style="width:200px;"/> </li>
+            <li class="list-group-item"> <b>Şəkil: </b> <img src="~/uploads/products/@Model.ProductImage" style="width:200px;" /> </li>
+            <li class="list-group-item"> <b>Uzunlug: </b> @Model.Uzunluq sm</li>
+            <li class="list-group-item"> <b>En: </b> @Model.En sm</li>
+            <li class="list-group-item"> <b>Reng: </b> @Model.Color</li>
+            <li class="list-group-item"> <b>Qalinliq: </b> @Model.Thickness mm </li>
+            <li class="list-group-item"> <b>Kunc: </b> @Model.Corner</li>
+            <li class="list-group-item"> <b>Cilalanma: </b> @Model.Polish</li>
 
         </ul>
         <div class="card-body">
-            <a asp-action="accept" asp-route-id="@Model.Id" class="btn btn-success">Qəbul Et</a>
-            <a asp-action="reject" asp-route-id="@Model.Id" class="btn btn-danger">Rədd Et</a>
+            <a asp-action="accept" asp-route-id="@Model.Id" class="btn btn-success @(Model.Status == OrderStatus.Accepted?"d-none":"")">Qəbul Et</a>
+            <a asp-action="reject" asp-route-id="@Model.Id" class="btn btn-danger @(Model.Status == OrderStatus.Rejected?"d-none":"")">Rədd Et</a>
+            <a asp-action="ready" asp-route-id="@Model.Id" class="btn btn-warning @(Model.Status == OrderStatus.Ready?"d-none":"")">Hazirdir</a>
         </div>
     </div>
 </div>

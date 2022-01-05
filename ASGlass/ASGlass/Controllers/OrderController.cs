@@ -31,11 +31,7 @@ namespace ASGlass.Controllers
 
             long? ordercode = Convert.ToInt64(HttpContext.Request.Form["orderstatus"]);
 
-            if(ordercode == null)
-            {
-
-            }
-            else
+            if(ordercode != null)
             {
                 if (query.Any(x => x.OrderNumber == ordercode))
                 {

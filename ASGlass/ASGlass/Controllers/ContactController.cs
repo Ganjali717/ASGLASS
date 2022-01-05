@@ -32,30 +32,29 @@ namespace ASGlass.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Index(EmailForm model)
         {
-            if (!ModelState.IsValid)
-            {
+            
+                SmtpClient smtp = new SmtpClient();
+
+                var credential = new NetworkCredential
+                {
+                    UserName = "anar.aliyev717@gmail.com",
+                    Password = "genceli717"
+                };
+                smtp.Credentials = credential;
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+
+
                 var message = new MailMessage();
-                message.To.Add(new MailAddress("anar.aliyev717@gmail.com"));  
-                message.From = new MailAddress(HttpContext.Request.Form["email"].ToString());  
-                message.Subject = "Your email subject";
+                message.From = new MailAddress(HttpContext.Request.Form["email"].ToString());
+                message.To.Add(new MailAddress("anar.aliyev717@gmail.com"));
+                message.Subject = "Müştəri";
                 message.Body = HttpContext.Request.Form["textarea"];
                 message.IsBodyHtml = true;
 
-                using (var smtp = new SmtpClient())
-                {
-                    var credential = new NetworkCredential
-                    {
-                        UserName = "anar.aliyev717@gmail.com",  
-                        Password = "genceli717"  
-                    };
-                    smtp.Credentials = credential;
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.Port = 587;
-                    smtp.EnableSsl = true;
-                    await smtp.SendMailAsync(message);
-                    return RedirectToAction("index", "contact");
-                }
-            }
+                await smtp.SendMailAsync(message);
+            
             return View(model);
         }
     }
